@@ -1,7 +1,8 @@
-import { ShieldCheck, Key, RefreshCw, Smartphone } from "lucide-react";
+import { ShieldCheck, RefreshCw, Smartphone } from "lucide-react";
+
 import { DashedLine } from "../dashed-line";
-import { cn } from "@/lib/utils";
 import { Badge } from "../ui/badge";
+import { cn } from "@/lib/utils";
 
 const identityItems = [
   {

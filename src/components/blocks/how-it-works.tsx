@@ -1,6 +1,5 @@
 import { Smartphone, MailCheck, Handshake, ShieldCheck } from "lucide-react";
-import { DashedLine } from "../dashed-line";
-import { cn } from "@/lib/utils";
+
 import { Card, CardContent } from "../ui/card";
 
 const steps = [

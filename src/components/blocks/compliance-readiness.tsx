@@ -1,5 +1,5 @@
-import { ShieldCheck, CheckCircle2, Scale } from "lucide-react";
-import { DashedLine } from "../dashed-line";
+import { CheckCircle2 } from "lucide-react";
+
 import { Badge } from "../ui/badge";
 
 export const ComplianceReadiness = () => {

@@ -1,6 +1,7 @@
 import { ShieldCheck, Lock, EyeOff, Database } from "lucide-react";
-import { Card } from "@/components/ui/card";
+
 import { Badge } from "../ui/badge";
+import { Card } from "@/components/ui/card";
 
 export function PrivacySecurity() {
   const userPoints = [
