@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 
 type PricingProps = {
-  className: string;
+  className?: string;
 };
 
 export const Pricing = ({ className }: PricingProps) => {
