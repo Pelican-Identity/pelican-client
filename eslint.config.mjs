@@ -70,7 +70,7 @@ const eslintConfig = [
             },
           ],
           pathGroupsExcludedImportTypes: ["builtin"],
-          "newlines-between": "never",
+          "newlines-between": "ignore",
           alphabetize: {
             order: "asc",
             caseInsensitive: true,
