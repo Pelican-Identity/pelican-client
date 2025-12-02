@@ -1,23 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import { ChevronRight } from "lucide-react";
-
 import { DashedLine } from "../dashed-line";
-
 import { Card, CardContent } from "@/components/ui/card";
 
 const items = [
   {
-    title: "Purpose-built for product development",
+    title: "Install Pelican Vault once",
     image: "/features/triage-card.svg",
   },
   {
-    title: "Manage projects end-to-end",
+    title: "Secure your identity",
     image: "/features/cycle-card.svg",
   },
   {
-    title: "Build momentum and healthy habits",
+    title: "Instantly sign in to all Pelican-enabled apps afterward",
+    image: "/features/overview-card.svg",
+  },
+  {
+    title: "No more repeated OTPs, passwords, or form filling",
+    image: "/features/overview-card.svg",
+  },
+  {
+    title: "KYC only once when required",
     image: "/features/overview-card.svg",
   },
 ];
@@ -26,29 +31,19 @@ export const Features = () => {
   return (
     <section id="feature-modern-teams" className="pb-28 lg:pb-32">
       <div className="container">
-        {/* Top dashed line with text */}
-        <div className="relative flex items-center justify-center">
-          <DashedLine className="text-muted-foreground" />
-          <span className="bg-muted text-muted-foreground absolute px-3 font-mono text-sm font-medium tracking-wide max-md:hidden">
-            MEASURE TWICE. CUT ONCE.
-          </span>
-        </div>
-
         {/* Content */}
-        <div className="mx-auto mt-10 grid max-w-4xl items-center gap-3 md:gap-0 lg:mt-24 lg:grid-cols-2">
+        <div className="mx-auto mt-10 flex flex-col items-center gap-3">
           <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-            Made for modern product teams
+            First Time Using Pelican?
           </h2>
           <p className="text-muted-foreground leading-snug">
-            Mainline is built on the habits that make the best product teams
-            successful: staying focused, moving quickly, and always aiming for
-            high-quality work.
+            Set up your identity once, use it everywhere
           </p>
         </div>
 
         {/* Features Card */}
-        <Card className="mt-8 rounded-3xl md:mt-12 lg:mt-20">
-          <CardContent className="flex p-0 max-md:flex-col">
+        <Card className="mt-8 rounded-3xl md:mt-12">
+          <CardContent className="grid grid-cols-3 justify-center">
             {items.map((item, i) => (
               <div key={i} className="flex flex-1 max-md:flex-col">
                 <div className="flex-1 p-4 pe-0! md:p-6">

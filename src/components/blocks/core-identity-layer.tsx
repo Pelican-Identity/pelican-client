@@ -1,14 +1,13 @@
 import Image from "next/image";
-
 import { DashedLine } from "../dashed-line";
-
+import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 
 const topItems = [
   {
-    title: "Reusable issue templates.",
+    title: "Deterministic User IDs",
     description:
-      "Draft lightning-fast documents with our Smart Instructions and Templates.",
+      "Each business gets a unique ID per user. No raw data sharing. Full privacy by default. Users cannot be tracked across apps.",
     images: [
       {
         src: "/resource-allocation/templates.webp",
@@ -21,9 +20,11 @@ const topItems = [
       "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
     fade: [""],
   },
+
   {
-    title: "Simplify your stack.",
-    description: "No more Confluence, SharePoint, or Microsoft Word.",
+    title: "Verified Contact Information",
+    description:
+      "Emails and phone numbers are verified automatically via Pelican Vault. No OTP setup, no email confirmation links, no password resets.",
     images: [
       { src: "/logos/jira.svg", alt: "Jira logo", width: 48, height: 48 },
       { src: "/logos/excel.svg", alt: "Excel logo", width: 48, height: 48 },
@@ -62,70 +63,81 @@ const topItems = [
 
 const bottomItems = [
   {
-    title: "Graveyard it.",
+    title: "Consent-Based Data Sharing",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.",
+      "Businesses request only what they need (name, DOB, country, etc.) Users approve instantly during sign-in. No extra flows.",
     images: [
       {
-        src: "/resource-allocation/graveyard.webp",
-        alt: "Graveyard interface",
-        width: 305,
-        height: 280,
+        src: "/resource-allocation/templates.webp",
+        alt: "Issue template interface",
+        width: 495,
+        height: 186,
       },
     ],
     className:
-      "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: ["bottom"],
-  },
-  {
-    title: "Task discussions.",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
-    images: [
-      {
-        src: "/resource-allocation/discussions.webp",
-        alt: "Task discussions interface",
-        width: 320,
-        height: 103,
-      },
-    ],
-    className:
-      "justify-normal [&>.title-container]:mb-5 md:[&>.title-container]:mb-0 [&>.image-container]:flex-1 md:[&>.image-container]:place-items-center md:[&>.image-container]:-translate-y-3",
+      "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
     fade: [""],
   },
+
   {
-    title: "Notifications.",
+    title: "Instant KYC / Identity Verification",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
+      "Switch on KYC mode and Pelican Vault automatically handles: Face capture, Liveness detection, ID document verification, Face-to-ID match, Businesses receive compliance-ready identity data instantly.",
     images: [
+      { src: "/logos/jira.svg", alt: "Jira logo", width: 48, height: 48 },
+      { src: "/logos/excel.svg", alt: "Excel logo", width: 48, height: 48 },
       {
-        src: "/resource-allocation/notifications.webp",
-        alt: "Notifications interface",
-        width: 305,
-        height: 280,
+        src: "/logos/notion.svg",
+        alt: "Notion logo",
+        width: 48,
+        height: 48,
       },
+      { src: "/logos/word.svg", alt: "Word logo", width: 48, height: 48 },
+      {
+        src: "/logos/monday.svg",
+        alt: "Monday logo",
+        width: 48,
+        height: 48,
+      },
+      {
+        src: "/logos/drive.svg",
+        alt: "Google Drive logo",
+        width: 48,
+        height: 48,
+      },
+      {
+        src: "/logos/jira.svg",
+        alt: "Jira logo",
+        width: 48,
+        height: 48,
+      },
+      { src: "/logos/asana.svg", alt: "Asana logo", width: 48, height: 48 },
     ],
     className:
-      "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: ["bottom"],
+      "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 md:[&>.title-container]:translate-x-2 xl:[&>.title-container]:translate-x-4 [&>.title-container]:translate-x-0",
+    fade: [],
   },
 ];
 
-export const ResourceAllocation = () => {
+export const CoreIdentityLayer = () => {
   return (
     <section
-      id="resource-allocation"
+      id="core-identity-layer"
       className="overflow-hidden pb-28 lg:pb-32"
     >
       <div className="">
-        <h2 className="container text-center text-3xl tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
-          Mainline your resource allocation and execution
-        </h2>
+        <div className="w-full space-y-4 text-center">
+          <Badge variant={"outline"}>Core Identity Layer</Badge>
+
+          <h2 className="container text-center text-3xl tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
+            Privacy-First Identity
+          </h2>
+        </div>
 
         <div className="mt-8 md:mt-12 lg:mt-20">
           <DashedLine
             orientation="horizontal"
-            className="container scale-x-105"
+            className="container max-w-7xl scale-x-110"
           />
 
           {/* Top Features Grid - 2 items */}
@@ -134,23 +146,26 @@ export const ResourceAllocation = () => {
               <Item key={i} item={item} isLast={i === topItems.length - 1} />
             ))}
           </div>
+        </div>
+
+        <div>
+          <DashedLine
+            orientation="horizontal"
+            className="container scale-x-105"
+          />
+
+          {/* Top Features Grid - 2 items */}
+          <div className="relative container flex max-md:flex-col">
+            {bottomItems.map((item, i) => (
+              <Item key={i} item={item} isLast={i === bottomItems.length - 1} />
+            ))}
+          </div>
           <DashedLine
             orientation="horizontal"
             className="container max-w-7xl scale-x-110"
           />
-
-          {/* Bottom Features Grid - 3 items */}
-          <div className="relative container grid max-w-7xl md:grid-cols-3">
-            {bottomItems.map((item, i) => (
-              <Item
-                key={i}
-                item={item}
-                isLast={i === bottomItems.length - 1}
-                className="md:pb-0"
-              />
-            ))}
-          </div>
         </div>
+
         <DashedLine
           orientation="horizontal"
           className="container max-w-7xl scale-x-110"
@@ -161,7 +176,7 @@ export const ResourceAllocation = () => {
 };
 
 interface ItemProps {
-  item: (typeof topItems)[number] | (typeof bottomItems)[number];
+  item: (typeof topItems)[number];
   isLast?: boolean;
   className?: string;
 }
@@ -175,9 +190,9 @@ const Item = ({ item, isLast, className }: ItemProps) => {
         item.className,
       )}
     >
-      <div className="title-container text-balance">
-        <h3 className="inline font-semibold">{item.title} </h3>
-        <span className="text-muted-foreground"> {item.description}</span>
+      <div className="title-container">
+        <h3 className="mb-2 text-xl font-semibold">{item.title} </h3>
+        <span className="text-muted-foreground w-full">{item.description}</span>
       </div>
 
       {item.fade.includes("bottom") && (

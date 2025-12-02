@@ -1,26 +1,37 @@
 import { Background } from "@/components/background";
-import { FAQ } from "@/components/blocks/faq";
+import { ComplianceReadiness } from "@/components/blocks/compliance-readiness";
+import { CoreIdentityLayer } from "@/components/blocks/core-identity-layer";
+import { EnterpriseSecurity } from "@/components/blocks/enterprise-security";
 import { Features } from "@/components/blocks/features";
+import { ForBusinesses } from "@/components/blocks/for-businesses";
+import { ForDevelopers } from "@/components/blocks/for-developers";
 import { Hero } from "@/components/blocks/hero";
-import { Logos } from "@/components/blocks/logos";
+import { HowItWorks } from "@/components/blocks/how-it-works";
+import { KycVerificationCTA } from "@/components/blocks/kyc-verification-cta";
+import { PortableIdentity } from "@/components/blocks/portable-identity";
 import { Pricing } from "@/components/blocks/pricing";
-import { ResourceAllocation } from "@/components/blocks/resource-allocation";
-import { Testimonials } from "@/components/blocks/testimonials";
+import { PrivacySecurity } from "@/components/blocks/privacy-security";
+import { WhyPelican } from "@/components/blocks/why-pelican";
 
 export default function Home() {
   return (
     <>
       <Background className="via-muted to-muted/80">
         <Hero />
-        <Logos />
+        <WhyPelican />
+        <CoreIdentityLayer />
         <Features />
-        <ResourceAllocation />
       </Background>
-      <Testimonials />
-      <Background variant="bottom">
-        <Pricing />
-        <FAQ />
-      </Background>
+      {/* <CTA /> */}
+      <PortableIdentity />
+      <KycVerificationCTA />
+      <HowItWorks />
+      <EnterpriseSecurity />
+      <ComplianceReadiness />
+      <Pricing />
+      <ForDevelopers />
+      <ForBusinesses />
+      <PrivacySecurity />
     </>
   );
 }
