@@ -44,13 +44,12 @@ export const Hero = () => {
       <div className="container flex flex-col justify-between gap-8 md:gap-14 lg:flex-row lg:gap-20">
         <div className="mx-auto flex max-w-4xl flex-col items-center text-left lg:text-center">
           <h1 className="text-foreground xl:whitespace-wrap max-w-160 text-3xl tracking-tight md:text-4xl lg:text-5xl">
-            The Authentication & Identity Layer for Modern Applications
+            Your Identity Layer for the Digital and Physical World
           </h1>
 
           <p className="text-muted-foreground mt-5 text-base md:text-xl">
-            Instant passwordless authentication today, verified user attributes
-            when you need them, and full identity verification & KYC when
-            required.
+            Privacy-first, self-owned identity for authentication, access, and
+            verification — fully controlled by you.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4 lg:flex-nowrap">
