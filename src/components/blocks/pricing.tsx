@@ -1,133 +1,61 @@
-"use client";
+import { Badge } from "../ui/badge";
 
-import { useState } from "react";
-
-import { Check } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
-import { cn } from "@/lib/utils";
-
-const plans = [
-  {
-    name: "Free",
-    monthlyPrice: "$0",
-    yearlyPrice: "$0",
-    description: "Free for everyone",
-    features: [
-      "Unlimited members",
-      "2 teams",
-      "500 issues",
-      "Slack and Github integrations",
-    ],
-  },
-  {
-    name: "Startup",
-    monthlyPrice: "$8",
-    yearlyPrice: "$6",
-    features: [
-      "All free plan features and...",
-      "Mainline AI",
-      "Unlimited teams",
-      "Unlimited issues and file uploads",
-      "Mainline Insights",
-      "Admin roles",
-    ],
-  },
-  {
-    name: "Enterprise",
-    monthlyPrice: "$8",
-    yearlyPrice: "$6",
-    features: [
-      "All free plan features and...",
-      "Mainline AI",
-      "Supermainline AGI",
-      "Free daily catered lunch",
-      "random HIPPA audits",
-    ],
-  },
-];
-
-export const Pricing = ({ className }: { className?: string }) => {
-  const [isAnnual, setIsAnnual] = useState(true);
+export const Pricing = () => {
+  const pricing = [
+    {
+      title: "Passwordless Logins",
+      price: "Free during beta / up to 1,000 per month",
+    },
+    {
+      title: "Deterministic Pelican ID",
+      price: "$0.01",
+    },
+    {
+      title: "Verified Email during sign-in",
+      price: "+$0.01",
+    },
+    {
+      title: "Verified Phone during sign-in",
+      price: "+$0.03",
+    },
+    {
+      title: "Identity Verification + Liveness",
+      price: "$0.60",
+    },
+  ];
 
   return (
-    <section className={cn("py-28 lg:py-32", className)}>
-      <div className="container max-w-5xl">
-        <div className="space-y-4 text-center">
-          <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-            Pricing
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-xl leading-snug text-balance">
-            Use Mainline for free with your whole team. Upgrade to enable
-            unlimited issues, enhanced security controls, and additional
-            features.
-          </p>
-        </div>
+    <section className="w-full py-20">
+      <div className="mx-auto max-w-4xl text-center">
+        <Badge variant={"outline"} className="mb-4">
+          PRICING (SAFE VERSION)
+        </Badge>
 
-        <div className="mt-8 grid items-start gap-5 text-start md:mt-12 md:grid-cols-3 lg:mt-20">
-          {plans.map((plan) => (
-            <Card
-              key={plan.name}
-              className={`${
-                plan.name === "Startup"
-                  ? "outline-primary origin-top outline-4"
-                  : ""
-              }`}
-            >
-              <CardContent className="flex flex-col gap-7 px-6 py-5">
-                <div className="space-y-2">
-                  <h3 className="text-foreground font-semibold">{plan.name}</h3>
-                  <div className="space-y-1">
-                    <div className="text-muted-foreground text-lg font-medium">
-                      {isAnnual ? plan.yearlyPrice : plan.monthlyPrice}{" "}
-                      {plan.name !== "Free" && (
-                        <span className="text-muted-foreground">
-                          per user/
-                          {isAnnual ? "year" : "month"}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
+        <h2 className="container text-center text-3xl tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
+          Get started with $5 free credit
+        </h2>
 
-                {plan.name !== "Free" ? (
-                  <div className="flex items-center gap-2">
-                    <Switch
-                      checked={isAnnual}
-                      onCheckedChange={() => setIsAnnual(!isAnnual)}
-                      aria-label="Toggle annual billing"
-                    />
-                    <span className="text-sm font-medium">Billed annually</span>
-                  </div>
-                ) : (
-                  <span className="text-muted-foreground text-sm">
-                    {plan.description}
-                  </span>
-                )}
+        <p className="text-muted-foreground mx-auto mt-2 mb-10 max-w-3xl">
+          (Displayed as usage equivalents)
+        </p>
 
-                <div className="space-y-3">
-                  {plan.features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="text-muted-foreground flex items-center gap-1.5"
-                    >
-                      <Check className="size-5 shrink-0" />
-                      <span className="text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+        <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+          <div className="space-y-6">
+            {pricing.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex justify-between border-b border-dashed pb-4 last:border-none last:pb-0"
+              >
+                <span className="font-medium text-gray-800">{item.title}</span>
+                <span className="text-gray-600">{item.price}</span>
+              </div>
+            ))}
+          </div>
 
-                <Button
-                  className="w-fit"
-                  variant={plan.name === "Startup" ? "default" : "outline"}
-                >
-                  Get started
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+          <div className="bg-success/15 mt-8 rounded-xl p-4 text-sm">
+            $5 free credit applies to a limited number of operations (clearly
+            capped).
+          </div>
         </div>
       </div>
     </section>
