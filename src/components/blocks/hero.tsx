@@ -1,42 +1,8 @@
 import Image from "next/image";
 
-import {
-  ArrowRight,
-  Blend,
-  ChartNoAxesColumn,
-  CircleDot,
-  Diamond,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-import { DashedLine } from "@/components/dashed-line";
 import { Button } from "@/components/ui/button";
-
-const features = [
-  {
-    title: "Universal Identity",
-    description:
-      "Let users log in once and carry their verified profile across apps.",
-    icon: CircleDot,
-  },
-  {
-    title: "Trust Scoring",
-    description:
-      "Real-time trust scores that help platforms reduce fraud and increase safety.",
-    icon: Blend,
-  },
-  {
-    title: "Reputation Engine",
-    description:
-      "Users build a portable reputation that apps can verify instantly.",
-    icon: Diamond,
-  },
-  {
-    title: "Compliance Ready",
-    description:
-      "Optional KYC, verification, and compliance tools right out of the box.",
-    icon: ChartNoAxesColumn,
-  },
-];
 
 export const Hero = () => {
   return (
