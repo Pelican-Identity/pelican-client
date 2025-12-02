@@ -1,7 +1,7 @@
 import { CheckCircle } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Badge } from "../ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 const features = [
