@@ -1,5 +1,4 @@
 import { Smartphone, MailCheck, Handshake, ShieldCheck } from "lucide-react";
-
 import { Card, CardContent } from "../ui/card";
 
 const steps = [

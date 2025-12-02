@@ -1,5 +1,4 @@
 import { TrendingDown, DollarSign, Lock, Shield, Database } from "lucide-react";
-
 import { Card } from "@/components/ui/card";
 
 const benefits = [

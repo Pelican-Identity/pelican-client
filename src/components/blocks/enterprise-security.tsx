@@ -1,5 +1,4 @@
 import { Building2, CheckCircle2, LockKeyhole } from "lucide-react";
-
 import { DashedLine } from "../dashed-line";
 import { Badge } from "../ui/badge";
 

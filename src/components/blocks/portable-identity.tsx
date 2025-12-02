@@ -1,5 +1,4 @@
 import { ShieldCheck, RefreshCw, Smartphone } from "lucide-react";
-
 import { DashedLine } from "../dashed-line";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";

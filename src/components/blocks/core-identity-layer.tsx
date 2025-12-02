@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { DashedLine } from "../dashed-line";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";

@@ -1,5 +1,4 @@
 import { ShieldCheck, Lock, EyeOff, Database } from "lucide-react";
-
 import { Badge } from "../ui/badge";
 import { Card } from "@/components/ui/card";
 
