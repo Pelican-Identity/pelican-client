@@ -22,26 +22,33 @@ import { cn } from "@/lib/utils";
 
 const ITEMS = [
   {
-    label: "Features",
-    href: "#features",
+    label: "Products",
+    href: "#products",
     dropdownItems: [
       {
-        title: "Modern product teams",
-        href: "/#feature-modern-teams",
+        title: "Authentication",
+        href: "/#instant-authentication",
         description:
-          "Mainline is built on the habits that make the best product teams successful",
+          "Passwordless authentication in under 5 seconds — no OTPs, no magic links, no friction.",
       },
       {
-        title: "Resource Allocation",
-        href: "/#resource-allocation",
-        description: "Mainline your resource allocation and execution",
+        title: "Identity Claims (Email & Phone Verification)",
+        href: "/#verified-contact-info",
+        description:
+          "Verified emails and phone numbers automatically, without OTP setup or confirmation links.",
+      },
+      {
+        title: "KYC & ID Verification",
+        href: "/#kyc-verification",
+        description:
+          "Instant KYC with face match, liveness detection, and ID document verification.",
       },
     ],
   },
-  { label: "About Us", href: "/about" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
+  { label: "Pelican Vault", href: "/#pelican-vault" },
+  { label: "Developers", href: "/#developers" },
+  { label: "Businesses", href: "/#businesses" },
+  { label: "Pricing", href: "/#pricing" },
 ];
 
 export const Navbar = () => {
@@ -52,17 +59,17 @@ export const Navbar = () => {
   return (
     <section
       className={cn(
-        "bg-background/70 absolute left-1/2 z-50 w-[min(90%,700px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
+        "bg-background/70 absolute left-1/2 z-50 w-[min(90%,1024px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
         "top-5 lg:top-12",
       )}
     >
       <div className="flex items-center justify-between px-6 py-3">
         <Link href="/" className="flex shrink-0 items-center gap-2">
           <Image
-            src="/logo.svg"
+            src="/logos/pelican-logos-03.png"
             alt="logo"
-            width={94}
-            height={18}
+            width={124}
+            height={48}
             className="dark:invert"
           />
         </Link>
@@ -73,7 +80,7 @@ export const Navbar = () => {
             {ITEMS.map((link) =>
               link.dropdownItems ? (
                 <NavigationMenuItem key={link.label} className="">
-                  <NavigationMenuTrigger className="data-[state=open]:bg-accent/50 bg-transparent! px-1.5">
+                  <NavigationMenuTrigger className="data-[state=open]:bg-accent/50 bg-transparent! px-3">
                     {link.label}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -105,7 +112,7 @@ export const Navbar = () => {
                   <Link
                     href={link.href}
                     className={cn(
-                      "relative bg-transparent px-1.5 text-sm font-medium transition-opacity hover:opacity-75",
+                      "relative bg-transparent px-3 text-sm font-medium transition-opacity hover:opacity-75",
                       pathname === link.href && "text-muted-foreground",
                     )}
                   >
@@ -120,18 +127,12 @@ export const Navbar = () => {
         {/* Auth Buttons */}
         <div className="flex items-center gap-2.5">
           <ThemeToggle />
+
           <Link href="/login" className="max-lg:hidden">
-            <Button variant="outline">
-              <span className="relative z-10">Login</span>
+            <Button variant="success">
+              <span className="relative z-10">Get Started</span>
             </Button>
           </Link>
-          <a
-            href="https://github.com/shadcnblocks/mainline-nextjs-template"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Github className="size-4" />
-            <span className="sr-only">GitHub</span>
-          </a>
 
           {/* Hamburger Menu Button (Mobile Only) */}
           <button

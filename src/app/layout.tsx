@@ -63,7 +63,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Mainline - Modern Next.js Template",
+    default: "Pelican Auth",
     template: "%s | Mainline",
   },
   description:
