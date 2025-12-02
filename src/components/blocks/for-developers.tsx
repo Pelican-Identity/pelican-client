@@ -1,7 +1,7 @@
-import { Code2, CheckCircle } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { CheckCircle } from "lucide-react";
 import { Badge } from "../ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const features = [
   "Authentication",

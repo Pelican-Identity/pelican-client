@@ -1,9 +1,7 @@
 import Image from "next/image";
-
 import { DashedLine } from "../dashed-line";
-
-import { cn } from "@/lib/utils";
 import { Badge } from "../ui/badge";
+import { cn } from "@/lib/utils";
 
 const topItems = [
   {

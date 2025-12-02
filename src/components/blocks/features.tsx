@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import { ChevronRight } from "lucide-react";
-
 import { DashedLine } from "../dashed-line";
-
 import { Card, CardContent } from "@/components/ui/card";
 
 const items = [

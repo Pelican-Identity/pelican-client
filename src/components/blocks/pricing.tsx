@@ -1,6 +1,11 @@
 import { Badge } from "../ui/badge";
+import { cn } from "@/lib/utils";
 
-export const Pricing = () => {
+type PricingProps = {
+  className?: string;
+};
+
+export const Pricing = ({ className }: PricingProps) => {
   const pricing = [
     {
       title: "Passwordless Logins",
@@ -25,7 +30,7 @@ export const Pricing = () => {
   ];
 
   return (
-    <section className="w-full py-20">
+    <section className={cn("w-full py-20", className)}>
       <div className="mx-auto max-w-4xl text-center">
         <Badge variant={"outline"} className="mb-4">
           PRICING (SAFE VERSION)
