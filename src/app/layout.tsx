@@ -9,50 +9,55 @@ import { StyleGlideProvider } from "@/components/styleglide-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 
-const dmSans = localFont({
+const Onest = localFont({
   src: [
     {
-      path: "../../fonts/dm-sans/DMSans-Regular.ttf",
+      path: "../../fonts/onest/Onest-Thin.ttf",
+      weight: "100",
+      style: "lighter",
+    },
+    {
+      path: "../../fonts/onest/Onest-ExtraLight.ttf",
+      weight: "100",
+      style: "lighter",
+    },
+    {
+      path: "../../fonts/onest/Onest-Light.ttf",
+      weight: "200",
+      style: "lighter",
+    },
+    {
+      path: "../../fonts/onest/Onest-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../fonts/dm-sans/DMSans-Italic.ttf",
-      weight: "400",
-      style: "italic",
-    },
-    {
-      path: "../../fonts/dm-sans/DMSans-Medium.ttf",
+      path: "../../fonts/onest/Onest-Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../fonts/dm-sans/DMSans-MediumItalic.ttf",
-      weight: "500",
-      style: "italic",
-    },
-    {
-      path: "../../fonts/dm-sans/DMSans-SemiBold.ttf",
+      path: "../../fonts/onest/Onest-SemiBold.ttf",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../../fonts/dm-sans/DMSans-SemiBoldItalic.ttf",
-      weight: "600",
-      style: "italic",
-    },
-    {
-      path: "../../fonts/dm-sans/DMSans-Bold.ttf",
+      path: "../../fonts/onest/Onest-Bold.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../../fonts/dm-sans/DMSans-BoldItalic.ttf",
-      weight: "700",
-      style: "italic",
+      path: "../../fonts/onest/Onest-ExtraBold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../../fonts/onest/Onest-Black.ttf",
+      weight: "900",
+      style: "normal",
     },
   ],
-  variable: "--font-dm-sans",
+  variable: "--font-onest",
   display: "swap",
 });
 
@@ -67,22 +72,8 @@ export const metadata: Metadata = {
     template: "%s | Mainline",
   },
   description:
-    "A modern Next.js template built with shadcn/ui, Tailwind & MDX. Open source - MIT License.",
-  keywords: [
-    "Next.js",
-    "nextjs template",
-    "nextjs theme",
-    "nextjs starter",
-    "shadcn template",
-    "shadcn theme",
-    "shadcn starter",
-    "tailwind template",
-    "tailwind theme",
-    "tailwind starter",
-    "mdx template",
-    "mdx theme",
-    "mdx starter",
-  ],
+    "Privacy-first, self-owned identity for authentication, access, and verification — fully controlled by you.",
+  keywords: [],
   authors: [{ name: "shadcnblocks.com" }],
   creator: "shadcnblocks.com",
   publisher: "shadcnblocks.com",
@@ -139,7 +130,7 @@ export default function RootLayout({
           src="https://tweakcn.com/live-preview.min.js"
         />
       </head>
-      <body className={`${dmSans.variable} ${inter.variable} antialiased`}>
+      <body className={`${Onest.variable} ${inter.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
