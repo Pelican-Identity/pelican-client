@@ -1,4 +1,3 @@
-import { Background } from "@/components/background";
 import { Footer } from "@/components/blocks/footer";
 import { Navbar } from "@/components/blocks/navbar";
 import { Button } from "@/components/ui/button";
