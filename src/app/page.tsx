@@ -22,18 +22,18 @@ const Home = () => {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 flex h-full items-end justify-between p-6">
-          <h1 className="text-9xl font-light text-white">
+          <h1 className="text-7xl font-light text-white lg:text-9xl">
             The real <br /> human network
           </h1>
         </div>
       </section>
 
       <div className="relative">
-        <div className="grid grid-cols-3 px-8 py-20">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Introducing World</h2>
           </div>
-          <div className="col-span-2 max-w-4xl">
+          <div className="col-span-full w-full lg:col-span-2 lg:max-w-4xl">
             <h3 className="text-6xl text-wrap">
               Universal proof of human, finance and connection for every human.
             </h3>
@@ -41,11 +41,11 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="grid grid-cols-3 px-8 py-20">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">What it means for you</h2>
           </div>
-          <div className="col-span-2 max-w-xl space-y-6">
+          <div className="col-span-2 w-full space-y-6 lg:max-w-xl">
             <h3 className="text-6xl text-wrap">
               A priority lane for humans online.
             </h3>
@@ -60,11 +60,11 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="grid grid-cols-3 px-8 py-20">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Your tools</h2>
           </div>
-          <div className="col-span-2 grid max-w-3xl grid-cols-2 gap-4">
+          <div className="col-span-2 grid w-full grid-cols-1 gap-4 lg:max-w-3xl lg:grid-cols-2">
             {[1, 2, 3].map((_, idx) => (
               <Card key={`key-${idx}`} className="shadow-card pt-4">
                 <CardContent className="space-y-10">
@@ -82,11 +82,11 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="grid grid-cols-3 px-8 py-20">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Why World was started</h2>
           </div>
-          <div className="col-span-2 max-w-2xl space-y-6">
+          <div className="col-span-2 w-full space-y-6 lg:max-w-2xl">
             <h3 className="text-6xl text-wrap">
               World is being built so every human benefits from the age of AI.
             </h3>
@@ -101,11 +101,11 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="bg-primary/20 grid grid-cols-3 px-8 py-20">
+        <div className="bg-primary/20 col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Get started</h2>
           </div>
-          <div className="col-span-2 max-w-2xl space-y-6">
+          <div className="col-span-2 w-full space-y-6 lg:max-w-2xl">
             <h3 className="text-6xl text-wrap">
               Join millions of humans in 160 countries with World ID.
             </h3>

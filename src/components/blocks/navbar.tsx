@@ -133,28 +133,6 @@ export const Navbar = () => {
             <Button variant="success">Get Pelican Vault</Button>
           </Link>
           <SideManu />
-
-          {/* Hamburger Menu Button (Mobile Only) */}
-          <button
-            className="text-muted-foreground relative flex size-8 lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <div className="absolute top-1/2 left-1/2 block w-[18px] -translate-x-1/2 -translate-y-1/2">
-              <span
-                aria-hidden="true"
-                className={`absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out ${isMenuOpen ? "rotate-45" : "-translate-y-1.5"}`}
-              ></span>
-              <span
-                aria-hidden="true"
-                className={`absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out ${isMenuOpen ? "opacity-0" : ""}`}
-              ></span>
-              <span
-                aria-hidden="true"
-                className={`absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out ${isMenuOpen ? "-rotate-45" : "translate-y-1.5"}`}
-              ></span>
-            </div>
-          </button>
         </div>
       </div>
     </section>
