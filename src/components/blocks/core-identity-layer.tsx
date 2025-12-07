@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { DashedLine } from "../dashed-line";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
@@ -197,61 +196,6 @@ const Item = ({ item, isLast, className }: ItemProps) => {
 
       {item.fade.includes("bottom") && (
         <div className="from-muted/80 absolute inset-0 z-10 bg-linear-to-t via-transparent to-transparent md:hidden" />
-      )}
-      {item.images.length > 4 ? (
-        <div className="relative overflow-hidden">
-          <div className="flex flex-col gap-5">
-            {/* First row - right aligned */}
-            <div className="flex translate-x-4 justify-end gap-5">
-              {item.images.slice(0, 4).map((image, j) => (
-                <div
-                  key={j}
-                  className="bg-background grid aspect-square size-16 place-items-center rounded-2xl p-2 lg:size-20"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    className="object-contain object-left-top"
-                  />
-                  <div className="from-muted/80 absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l to-transparent" />
-                </div>
-              ))}
-            </div>
-            {/* Second row - left aligned */}
-            <div className="flex -translate-x-4 gap-5">
-              {item.images.slice(4).map((image, j) => (
-                <div
-                  key={j}
-                  className="bg-background grid aspect-square size-16 place-items-center rounded-2xl lg:size-20"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    className="object-contain object-left-top"
-                  />
-                  <div className="from-muted absolute inset-y-0 bottom-0 left-0 z-10 w-14 bg-linear-to-r to-transparent" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="image-container grid grid-cols-1 gap-4">
-          {item.images.map((image, j) => (
-            <Image
-              key={j}
-              src={image.src}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              className="object-contain object-left-top"
-            />
-          ))}
-        </div>
       )}
 
       {!isLast && (

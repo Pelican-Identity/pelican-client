@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
@@ -8,31 +8,19 @@ export const Hero = () => {
       <div className="container flex flex-col justify-between gap-8 md:gap-14 lg:flex-row lg:gap-20">
         <div className="mx-auto flex max-w-4xl flex-col items-center text-left lg:text-center">
           <h1 className="text-foreground xl:whitespace-wrap max-w-160 text-3xl tracking-tight md:text-4xl lg:text-5xl">
-            Your Identity Layer for the Digital and Physical World
+            Build Authentication, Access, and Verification for Your Users in
+            minutes
           </h1>
 
           <p className="text-muted-foreground mt-5 text-base md:text-xl">
-            Privacy-first, self-owned identity for authentication, access, and
-            verification — fully controlled by you.
+            Pelican provides a simple lightweight frontend SDK for
+            authentication, access, and verification.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4 lg:flex-nowrap">
-            <Button asChild variant={"success"}>
-              <a href="https://github.com/shadcnblocks/mainline-nextjs-template">
-                For Businesses → Integrate Pelican
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              className="from-background h-auto gap-2 bg-linear-to-r to-transparent shadow-md"
-              asChild
-            >
-              <a
-                href="https://shadcnblocks.com"
-                className="max-w-56 truncate text-start md:max-w-none"
-              >
-                For Users → Get Pelican Vault
-                <ArrowRight className="stroke-3" />
+            <Button asChild variant={"success"} className="rounded-full p-6">
+              <a href="https://business.pelicanidentity.com/">
+                Integrate Pelican
               </a>
             </Button>
           </div>
@@ -42,10 +30,10 @@ export const Hero = () => {
       <div className="mt-12 max-lg:ml-6 max-lg:h-[550px] max-lg:overflow-hidden md:mt-20 lg:container lg:mt-24">
         <div className="relative h-[793px] w-full">
           <Image
-            src="/hero.webp"
+            src="https://res.cloudinary.com/de0jr8mcm/image/upload/v1765112732/pelican/Dec_7_Screenshot_from_Compressor.io_shkfsk.png"
             alt="hero"
             fill
-            className="rounded-2xl object-cover object-left-top shadow-lg max-lg:rounded-tr-none"
+            className="rounded-2xl bg-white object-contain object-top-left shadow-lg max-lg:rounded-tr-none"
           />
         </div>
       </div>

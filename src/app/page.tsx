@@ -8,23 +8,28 @@ const Home = () => {
   return (
     <div>
       <Navbar />
+      <div className="h-20" />
 
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-[50svh] w-full grid-cols-2 items-end justify-center gap-x-10 bg-white px-2 py-2 md:mt-10 md:px-20 lg:grid">
         <video
-          src="/video/hero-video.mp4"
-          className="absolute inset-0 h-full w-full object-cover"
+          src="https://res.cloudinary.com/de0jr8mcm/video/upload/v1764921305/pelican/pelicanherovideo_pl1kwc.mp4"
+          className="col-span-1 h-[20svh] w-full object-cover md:h-[30svh] lg:h-full"
           autoPlay
           loop
           muted
           playsInline
         />
 
-        <div className="absolute inset-0 bg-black/50" />
-
-        <div className="relative z-10 flex h-full items-end justify-between p-6">
-          <h1 className="text-7xl font-light text-white lg:text-9xl">
-            The real <br /> human network
-          </h1>
+        <div className="relative">
+          <div className="bg-white p-4 px-4 md:px-10">
+            <h1 className="mt-10 text-4xl font-light text-black md:text-6xl lg:mt-0 lg:text-6xl">
+              The{" "}
+              <span className="decoration-primary font-medium italic underline underline-offset-8">
+                Identity
+              </span>{" "}
+              layer for our physical and digital world
+            </h1>
+          </div>
         </div>
       </section>
 

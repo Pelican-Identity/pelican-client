@@ -1,138 +1,55 @@
 "use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { SideManu } from "./side-menu";
+import { SideMenu } from "./side-menu";
+import NavigationLink, { NavigationLinkProps } from "../navbar/navigation";
+import PlatformMenu from "../navbar/platform-menu";
+import UseCaseMenu from "../navbar/use-case-menu";
 
-const ITEMS = [
+export const Menu: NavigationLinkProps[] = [
   {
+    href: "#",
     label: "Platform",
-    href: "#products",
-    dropdownItems: [
-      {
-        title: "Authentication",
-        href: "/#instant-authentication",
-        description:
-          "Passwordless authentication in under 5 seconds — no OTPs, no magic links, no friction.",
-      },
-      {
-        title: "Identity Claims (Email & Phone Verification)",
-        href: "/#verified-contact-info",
-        description:
-          "Verified emails and phone numbers automatically, without OTP setup or confirmation links.",
-      },
-      {
-        title: "KYC & ID Verification",
-        href: "/#kyc-verification",
-        description:
-          "Instant KYC with face match, liveness detection, and ID document verification.",
-      },
-      {
-        title: "KYC & ID Verification",
-        href: "/#kyc-verification",
-        description:
-          "Instant KYC with face match, liveness detection, and ID document verification.",
-      },
-    ],
+    content: <PlatformMenu />,
   },
-  // { label: "Pelican Vault", href: "/#pelican-vault" },
-  // { label: "Developers", href: "/#developers" },
-  { label: "Use Cases", href: "/#businesses" },
-  // { label: "Pricing", href: "/#pricing" },
+  { href: "#", label: "Use Cases", content: <UseCaseMenu /> },
 ];
 
 export const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
-
   return (
     <section
       className={cn(
-        "bg-background/70 absolute left-1/2 z-50 w-[min(90%,1024px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
-        "top-5 lg:top-12",
+        "fixed top-0 z-50 flex h-16 w-full flex-col justify-center bg-white transition-all duration-300 lg:h-20",
       )}
     >
-      <div className="flex items-center justify-between px-6 py-3">
-        <Link href="/" className="flex shrink-0 items-center gap-2">
-          <Image
-            src="/logos/pelican-logos-03.png"
-            alt="logo"
-            width={124}
-            height={48}
-            className="dark:invert"
-          />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <NavigationMenu className="max-lg:hidden">
-          <NavigationMenuList>
-            {ITEMS.map((link) =>
-              link.dropdownItems ? (
-                <NavigationMenuItem key={link.label} className="">
-                  <NavigationMenuTrigger className="data-[state=open]:bg-accent/50 bg-transparent! px-3">
-                    {link.label}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="w-[400px] space-y-2 p-4">
-                      {link.dropdownItems.map((item) => (
-                        <li key={item.title}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              href={item.href}
-                              className="group hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-center gap-4 rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
-                            >
-                              <div className="space-y-1.5 transition-transform duration-300 group-hover:translate-x-1">
-                                <div className="text-sm leading-none font-medium">
-                                  {item.title}
-                                </div>
-                                <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ) : (
-                <NavigationMenuItem key={link.label} className="">
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "relative bg-transparent px-3 text-sm font-medium transition-opacity hover:opacity-75",
-                      pathname === link.href && "text-muted-foreground",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </NavigationMenuItem>
-              ),
-            )}
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        {/* Auth Buttons */}
-        <div className="flex items-center gap-2.5">
-          {/* <ThemeToggle /> */}
-
-          <Link href="/login" className="max-lg:hidden">
-            <Button variant="success">Get Pelican Vault</Button>
+      <div className="items-cente flex justify-between px-2 md:px-4 lg:px-6">
+        <div className="items-cente flex gap-20">
+          <Link href="/" className="flex shrink-0 items-center gap-2">
+            <Image
+              src="https://res.cloudinary.com/de0jr8mcm/image/upload/v1765097838/pelican/pelican-logo_logo-black_dduhrr.png"
+              alt="pelican-logo"
+              width={154}
+              height={48}
+              className="dark:invert"
+            />
           </Link>
-          <SideManu />
+          <div className="hidden items-center gap-10 md:flex">
+            {Menu.map((item) => (
+              <NavigationLink key={item.label} {...item} />
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center lg:gap-2.5">
+          <Link
+            href="/login"
+            className="rounded-full bg-black px-4 py-2 text-sm font-bold text-white hover:bg-black/70 lg:px-6 lg:py-3"
+          >
+            <p className="hidden lg:block">Get Pelican Vault</p>
+            <p className="block text-xs lg:hidden">Get Vault</p>
+          </Link>
+          <SideMenu />
         </div>
       </div>
     </section>

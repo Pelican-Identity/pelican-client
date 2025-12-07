@@ -54,19 +54,15 @@ export function ForDevelopers() {
                 <code className="language-typescript">
                   {`import { PelicanAuth } from '@pelican/auth';
 
-const pelican = new PelicanAuth({
-  publicKey: 'your_public_key',
-  projectKey: 'your_project_key',
-  requiredData: ['email', 'phone', 'name'],
-  kycEnabled: true
-});
-
-// Authenticate user
-const user = await pelican.authenticate();
-
-// Receive verified data
-console.log(user.verifiedEmail);
-console.log(user.deterministicId);`}
+   <PelicanAuth
+        publicKey="pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        projectId="pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        authType={"login"}
+        onError={(error) => console.log(error)}
+        onSuccess={(identity) => {
+          sendToBackend(identity);
+        }}
+    />`}
                 </code>
               </pre>
             </Card>
