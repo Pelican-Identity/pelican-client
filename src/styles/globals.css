@@ -12,11 +12,11 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.92 0.04 86.47);
+  --primary: #d9eb1b;
   --primary-foreground: oklch(0.31 0.02 86.64);
   --success: #daeb19;
   --success-foreground: oklch(0.31 0.02 86.64);
-  --secondary: oklch(0.97 0 0);
+  --secondary: #6cdae7;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
