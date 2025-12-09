@@ -3,7 +3,14 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Smartphone, Eye, Lock, Globe, CheckCircle } from "lucide-react";
+import {
+  Smartphone,
+  Eye,
+  Lock,
+  Globe,
+  CheckCircle,
+  Shield,
+} from "lucide-react";
 import { Navbar } from "@/components/blocks/navbar";
 import { Footer } from "@/components/blocks/footer";
 import AndroidIcon from "../../../public/android-icon";
@@ -48,36 +55,53 @@ export default function PelicanVaultPage() {
     <div>
       <Navbar />
 
-      <div className="h-20" />
+      <div className="h-10" />
 
       {/* Hero Section */}
-      <section className="px-6 pt-32 pb-20">
-        <div className="container mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="mb-6 text-4xl font-bold md:text-6xl">
-              Your identity, protected{" "}
+      <section className="flex min-h-screen items-center px-6 pt-20 pb-16">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Left - Text Content */}
+          <div className="order-2 lg:order-1">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl"
+            >
+              Your identity, protected —{" "}
               <span className="text-primary">and always with you.</span>
-            </h1>
+            </motion.h1>
 
-            <p className="text-muted-foreground mx-auto mb-6 max-w-3xl text-lg md:text-xl">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-muted-foreground mb-6 text-lg leading-relaxed md:text-xl"
+            >
               Pelican Vault is your personal identity app. It stores the details
               you choose to keep, protects them with military-grade security,
               and lets you share them safely with businesses, apps, and
               institutions — only when you decide.
-            </p>
+            </motion.p>
 
-            <p className="text-md text-muted-foreground mx-auto mb-10 max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-md text-muted-foreground/80 mb-10"
+            >
               Your identity should feel like something you own, not something
               you repeat every time you sign up somewhere new. Pelican Vault
               makes that possible.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Button size="lg" className="gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-col gap-4 sm:flex-row"
+            >
+              <Button size="lg" className="shadow-primary/25 gap-2 shadow-lg">
                 <IOSIcon />
                 Download for iOS
               </Button>
@@ -85,7 +109,45 @@ export default function PelicanVaultPage() {
                 <AndroidIcon />
                 Download for Android
               </Button>
-            </div>
+            </motion.div>
+          </div>
+
+          {/* Right - Image Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="order-1 mx-auto max-w-sm lg:order-2"
+          >
+            <Card className="border-border/50 bg-card/50 shadow-primary/10 overflow-hidden shadow-2xl">
+              <CardContent className="p-0">
+                <div className="relative aspect-[4/5] lg:aspect-[3/4]">
+                  <img
+                    src={
+                      "https://i.pinimg.com/736x/b3/35/ec/b335ecf77d646b98d09654d0bd1a9aca.jpg"
+                    }
+                    alt="Pelican Vault security visualization"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="from-background/60 absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
+                  <div className="absolute right-6 bottom-6 left-6">
+                    <div className="bg-background/80 border-border/50 flex items-center gap-3 rounded-xl border p-4 backdrop-blur-sm">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-900">
+                        <Shield className="text-primary h-6 w-6" />
+                      </div>
+                      <div>
+                        <p className="text-foreground font-semibold">
+                          Military-grade encryption
+                        </p>
+                        <p className="text-muted-foreground text-sm">
+                          Your data, protected always
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </section>
