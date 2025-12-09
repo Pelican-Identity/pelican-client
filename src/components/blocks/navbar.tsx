@@ -43,7 +43,7 @@ export const Navbar = () => {
 
         <div className="flex items-center lg:gap-2.5">
           <Link
-            href="/login"
+            href="/pelican-vault"
             className="rounded-full bg-black px-4 py-2 text-sm font-bold text-white hover:bg-black/70 lg:px-6 lg:py-3"
           >
             <p className="hidden lg:block">Get Pelican Vault</p>
