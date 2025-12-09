@@ -153,7 +153,7 @@ export default function PelicanVaultPage() {
       </section>
 
       {/* Features Grid */}
-      <section className="px-6 py-20">
+      <section className="min-h-screen px-6 py-20">
         <div className="container mx-auto max-w-6xl">
           <div className="grid gap-8 md:grid-cols-2">
             {features.map((feature, index) => (
@@ -182,7 +182,7 @@ export default function PelicanVaultPage() {
       </section>
 
       {/* Transparency Section */}
-      <section className="bg-card/30 px-6 py-20">
+      <section className="bg-card/30 min-h-screen px-6 py-20">
         <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -218,8 +218,8 @@ export default function PelicanVaultPage() {
       </section>
 
       {/* Future Trust Section */}
-      <section className="bg-secondary/10 px-6 py-28">
-        <div className="container mx-auto max-w-4xl text-center">
+      <section className="bg-secondary/10 flex min-h-screen items-center justify-center">
+        <div className="container mx-auto max-w-4xl px-6 py-28 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -9,10 +9,10 @@ const Home = () => {
       <Navbar />
       <div className="h-20" />
 
-      <section className="relative h-[50svh] w-full grid-cols-2 items-end justify-center gap-x-10 bg-white px-2 py-2 md:mt-10 md:px-20 lg:grid">
+      <section className="relative h-[80svh] w-full grid-cols-2 items-end justify-center gap-x-10 bg-white px-2 py-2 md:mt-10 md:px-20 lg:grid">
         <video
           src="https://res.cloudinary.com/de0jr8mcm/video/upload/v1764921305/pelican/pelicanherovideo_pl1kwc.mp4"
-          className="col-span-1 h-[20svh] w-full object-cover md:h-[30svh] lg:h-full"
+          className="col-span-1 h-[20svh] w-full rounded-2xl object-cover md:h-[30svh] lg:h-full"
           autoPlay
           loop
           muted
@@ -39,7 +39,7 @@ const Home = () => {
 
       <div className="relative">
         {/*  */}
-        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">A New Approach to Identity</h2>
           </div>
@@ -76,7 +76,7 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">For People</h2>
           </div>
@@ -118,7 +118,7 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">
               For Businesses & Institutions
@@ -158,7 +158,7 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Our Philosophy</h2>
           </div>
@@ -209,7 +209,7 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Real-World Use Cases </h2>
           </div>
@@ -266,7 +266,7 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Why It Matters Now</h2>
           </div>
@@ -294,21 +294,24 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="bg-primary/20 col-span-1 grid gap-4 px-8 py-20 lg:grid-cols-3">
-          <div>
-            <h2 className="text-2xl font-light">A Future We Can Trust</h2>
-          </div>
-          <div className="col-span-2 w-full space-y-6">
-            <h3 className="text-6xl text-wrap">One identity.</h3>
-            <p>
-              Owned by you. <br /> Recognized by the world.
-            </p>
 
-            <p>
-              Pelican isn’t just an app. <br />
-              It’s a foundation — for people, for institutions, for everything
-              our world is becoming.
-            </p>
+        <div className="bg-primary/20 col-span-1 flex min-h-screen items-center justify-center">
+          <div className="grid gap-4 px-8 py-20 lg:grid-cols-3">
+            <div>
+              <h2 className="text-2xl font-light">A Future We Can Trust</h2>
+            </div>
+            <div className="col-span-2 w-full space-y-6">
+              <h3 className="text-6xl text-wrap">One identity.</h3>
+              <p>
+                Owned by you. <br /> Recognized by the world.
+              </p>
+
+              <p>
+                Pelican isn’t just an app. <br />
+                It’s a foundation — for people, for institutions, for everything
+                our world is becoming.
+              </p>
+            </div>
           </div>
         </div>
 
