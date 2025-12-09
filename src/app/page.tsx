@@ -17,7 +17,6 @@ const Home = () => {
           loop
           muted
           playsInline
-          controls
         />
 
         <div className="relative">
