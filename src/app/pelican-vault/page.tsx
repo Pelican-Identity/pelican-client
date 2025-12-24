@@ -12,9 +12,10 @@ import {
   Shield,
 } from "lucide-react";
 import { Navbar } from "@/components/blocks/navbar";
-import { Footer } from "@/components/blocks/footer";
+
 import AndroidIcon from "../../../public/android-icon";
 import IOSIcon from "../../../public/ios-icon";
+import { VaultFooter } from "@/components/blocks/vault-footer";
 
 const features = [
   {
@@ -121,7 +122,7 @@ export default function PelicanVaultPage() {
           >
             <Card className="border-border/50 bg-card/50 shadow-primary/10 overflow-hidden shadow-2xl">
               <CardContent className="p-0">
-                <div className="relative aspect-[4/5] lg:aspect-[3/4]">
+                <div className="relative aspect-4/5 lg:aspect-3/4">
                   <img
                     src={
                       "https://i.pinimg.com/736x/b3/35/ec/b335ecf77d646b98d09654d0bd1a9aca.jpg"
@@ -129,7 +130,7 @@ export default function PelicanVaultPage() {
                     alt="Pelican Vault security visualization"
                     className="h-full w-full object-cover"
                   />
-                  <div className="from-background/60 absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
+                  <div className="from-background/60 absolute inset-0 bg-linear-to-t via-transparent to-transparent" />
                   <div className="absolute right-6 bottom-6 left-6">
                     <div className="bg-background/80 border-border/50 flex items-center gap-3 rounded-xl border p-4 backdrop-blur-sm">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-900">
@@ -209,7 +210,7 @@ export default function PelicanVaultPage() {
                 viewport={{ once: true }}
                 className="bg-background border-border/50 flex items-center gap-3 rounded-lg border p-4"
               >
-                <CheckCircle className="text-primary h-5 w-5 flex-shrink-0" />
+                <CheckCircle className="text-primary h-5 w-5 shrink-0" />
                 <span className="text-foreground">{point}</span>
               </motion.div>
             ))}
@@ -254,7 +255,7 @@ export default function PelicanVaultPage() {
         </div>
       </section>
 
-      <Footer />
+      <VaultFooter />
     </div>
   );
 }

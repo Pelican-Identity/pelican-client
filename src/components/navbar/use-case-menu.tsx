@@ -137,16 +137,19 @@ const UseCaseMenu = () => {
           <Link
             key={menu.label}
             href={menu.href}
-            className="rounded-2xl p-4 transition-all duration-300 lg:hover:bg-gray-100"
+            className="0 rounded-2xl p-4 transition-all duration-300"
           >
             <div className="space-y-2">
               <div className="space-y-4">
                 <div className="decoration-primary font-semibold underline underline-offset-8">
                   {menu.label}
                 </div>
-                <div className="space-y-4 text-xs">
+                <div className="space-y-2 text-xs">
                   {menu.items.map((item) => (
-                    <div key={item.label} className="flex items-center gap-2">
+                    <div
+                      key={item.label}
+                      className="flex items-center gap-2 rounded-2xl py-2 transition-all duration-300 hover:pl-2 lg:hover:bg-gray-200"
+                    >
                       <div className="flex items-center justify-center rounded-lg bg-gray-50 p-2">
                         {item.icon}
                       </div>
