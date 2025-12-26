@@ -28,7 +28,11 @@ export const KycVerificationCTA = () => {
         {/* CTA Button */}
         <div className="mt-8 flex justify-center">
           <Button asChild variant={"default"}>
-            <a href="#integrate-pelican">
+            <a
+              href="https://dash.pelicanidentity.com/sign-in"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Integrate Pelican Verification
               <ArrowRight className="size-5" />
             </a>
