@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const Hero = () => {
   return (
@@ -17,7 +18,7 @@ export const Hero = () => {
             authentication, access, and verification.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4 lg:flex-nowrap">
+          <div className="mt-8 flex flex-wrap items-center gap-2 lg:flex-nowrap">
             <Button asChild variant={"success"} className="rounded-full p-6">
               <a
                 href="https://dash.pelicanidentity.com/sign-in"
@@ -27,11 +28,18 @@ export const Hero = () => {
                 Integrate Pelican
               </a>
             </Button>
+            <Button
+              asChild
+              variant={"success"}
+              className="rounded-full bg-black p-6 text-white hover:bg-black/80"
+            >
+              <Link href="/demo">Try Quick Demo</Link>
+            </Button>
           </div>
         </div>
       </div>
 
-      <div className="mt-12 max-lg:ml-6 max-lg:h-[550px] max-lg:overflow-hidden md:mt-20 lg:container lg:mt-24">
+      <div className="l container mt-12">
         <div className="relative h-[200px] w-full lg:h-[693px]">
           <Image
             src="https://res.cloudinary.com/de0jr8mcm/image/upload/v1766752648/pelican/Dec_26_2025_Screenshot_from_Compressor.io_1_shos1n.png"

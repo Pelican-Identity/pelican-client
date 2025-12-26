@@ -2,7 +2,6 @@ import { Background } from "@/components/background";
 import { ComplianceReadiness } from "@/components/blocks/compliance-readiness";
 import { CoreIdentityLayer } from "@/components/blocks/core-identity-layer";
 import { EnterpriseSecurity } from "@/components/blocks/enterprise-security";
-import { Features } from "@/components/blocks/features";
 import { Footer } from "@/components/blocks/footer";
 import { ForBusinesses } from "@/components/blocks/for-businesses";
 import { ForDevelopers } from "@/components/blocks/for-developers";
@@ -23,7 +22,7 @@ export default function DeveloperPage() {
         <Hero />
         <WhyPelican />
         <CoreIdentityLayer />
-        <Features />
+        <ForDevelopers />
       </Background>
       {/* <CTA /> */}
       <PortableIdentity />
@@ -32,7 +31,6 @@ export default function DeveloperPage() {
       <EnterpriseSecurity />
       <ComplianceReadiness />
       {/* <Pricing /> */}
-      <ForDevelopers />
       <ForBusinesses />
       <PrivacySecurity />
       <Footer />

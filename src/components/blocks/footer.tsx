@@ -4,12 +4,8 @@ import { Button } from "@/components/ui/button";
 
 export function Footer() {
   const navigation = [
-    { name: "Product", href: "/#product" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Developers", href: "/#developers" },
-    { name: "Security", href: "/#security" },
-    { name: "Compliance", href: "/#compliance" },
-    { name: "FAQ", href: "/faq" },
+    { name: "Developers", href: "/developer" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -32,11 +28,8 @@ export function Footer() {
           </p>
 
           <div className="flex items-center justify-center gap-4">
-            <Button size="lg" className="mt-4" variant={"outline"}>
-              Get Pelican
-            </Button>
-            <Button size="lg" className="mt-4" variant="success">
-              Learn how Pelican works
+            <Button size="lg" className="mt-4" variant="success" asChild>
+              <Link href="/demo">Try it out</Link>
             </Button>
           </div>
         </div>

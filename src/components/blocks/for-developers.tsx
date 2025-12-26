@@ -1,8 +1,7 @@
 import { CheckCircle } from "lucide-react";
 import { Badge } from "../ui/badge";
-
-import { Card } from "@/components/ui/card";
 import Image from "next/image";
+import CodeExample from "./code-example";
 
 const features = [
   "Authentication",
@@ -88,25 +87,7 @@ export function ForDevelopers() {
           </div>
 
           {/* RIGHT SIDE CODE CARD */}
-          <div>
-            <Card className="bg-card border-border hidden rounded-xl border p-6 shadow-sm md:block">
-              <pre className="overflow-x-auto text-sm leading-relaxed">
-                <code className="language-typescript">
-                  {`import { PelicanAuth } from "@pelican-identity/react;
-
-   <PelicanAuth
-        publicKey="pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-        projectId="pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-        authType={"login"}
-        onError={(error) => console.log(error)}
-        onSuccess={(identity) => {
-          sendToBackend(identity);
-        }}
-    />`}
-                </code>
-              </pre>
-            </Card>
-          </div>
+          <CodeExample />
         </div>
       </div>
     </section>
