@@ -1,238 +1,56 @@
 "use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ChevronRight } from "lucide-react";
-
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { SideMenu } from "./side-menu";
+import NavigationLink, { NavigationLinkProps } from "../navbar/navigation";
+import PlatformMenu from "../navbar/platform-menu";
+import UseCaseMenu from "../navbar/use-case-menu";
 
-const ITEMS = [
+export const Menu: NavigationLinkProps[] = [
   {
-    label: "Products",
-    href: "#products",
-    dropdownItems: [
-      {
-        title: "Authentication",
-        href: "/#instant-authentication",
-        description:
-          "Passwordless authentication in under 5 seconds — no OTPs, no magic links, no friction.",
-      },
-      {
-        title: "Identity Claims (Email & Phone Verification)",
-        href: "/#verified-contact-info",
-        description:
-          "Verified emails and phone numbers automatically, without OTP setup or confirmation links.",
-      },
-      {
-        title: "KYC & ID Verification",
-        href: "/#kyc-verification",
-        description:
-          "Instant KYC with face match, liveness detection, and ID document verification.",
-      },
-    ],
+    href: "#",
+    label: "Platform",
+    content: <PlatformMenu />,
   },
-  { label: "Pelican Vault", href: "/#pelican-vault" },
-  { label: "Developers", href: "/#developers" },
-  { label: "Businesses", href: "/#businesses" },
-  { label: "Pricing", href: "/#pricing" },
+  { href: "#", label: "Use Cases", content: <UseCaseMenu /> },
 ];
 
 export const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const pathname = usePathname();
-
   return (
     <section
       className={cn(
-        "bg-background/70 absolute left-1/2 z-50 w-[min(90%,1024px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
-        "top-5 lg:top-12",
+        "fixed top-0 z-50 flex h-16 w-full flex-col justify-center bg-white transition-all duration-300 lg:h-20",
       )}
     >
-      <div className="flex items-center justify-between px-6 py-3">
-        <Link href="/" className="flex shrink-0 items-center gap-2">
-          <Image
-            src="/logos/pelican-logos-03.png"
-            alt="logo"
-            width={124}
-            height={48}
-            className="dark:invert"
-          />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <NavigationMenu className="max-lg:hidden">
-          <NavigationMenuList>
-            {ITEMS.map((link) =>
-              link.dropdownItems ? (
-                <NavigationMenuItem key={link.label} className="">
-                  <NavigationMenuTrigger className="data-[state=open]:bg-accent/50 bg-transparent! px-3">
-                    {link.label}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="w-[400px] space-y-2 p-4">
-                      {link.dropdownItems.map((item) => (
-                        <li key={item.title}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              href={item.href}
-                              className="group hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-center gap-4 rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
-                            >
-                              <div className="space-y-1.5 transition-transform duration-300 group-hover:translate-x-1">
-                                <div className="text-sm leading-none font-medium">
-                                  {item.title}
-                                </div>
-                                <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ) : (
-                <NavigationMenuItem key={link.label} className="">
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "relative bg-transparent px-3 text-sm font-medium transition-opacity hover:opacity-75",
-                      pathname === link.href && "text-muted-foreground",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </NavigationMenuItem>
-              ),
-            )}
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        {/* Auth Buttons */}
-        <div className="flex items-center gap-2.5">
-          <ThemeToggle />
-
-          <Link href="/login" className="max-lg:hidden">
-            <Button variant="success">
-              <span className="relative z-10">Get Started</span>
-            </Button>
+      <div className="items-cente flex justify-between px-2 md:px-4 lg:px-6">
+        <div className="items-cente flex gap-20">
+          <Link href="/" className="flex shrink-0 items-center gap-2">
+            <Image
+              src="https://res.cloudinary.com/de0jr8mcm/image/upload/v1765097838/pelican/pelican-logo_logo-black_dduhrr.png"
+              alt="pelican-logo"
+              width={154}
+              height={48}
+              className="dark:invert"
+            />
           </Link>
-
-          {/* Hamburger Menu Button (Mobile Only) */}
-          <button
-            className="text-muted-foreground relative flex size-8 lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <div className="absolute top-1/2 left-1/2 block w-[18px] -translate-x-1/2 -translate-y-1/2">
-              <span
-                aria-hidden="true"
-                className={`absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out ${isMenuOpen ? "rotate-45" : "-translate-y-1.5"}`}
-              ></span>
-              <span
-                aria-hidden="true"
-                className={`absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out ${isMenuOpen ? "opacity-0" : ""}`}
-              ></span>
-              <span
-                aria-hidden="true"
-                className={`absolute block h-0.5 w-full rounded-full bg-current transition duration-500 ease-in-out ${isMenuOpen ? "-rotate-45" : "translate-y-1.5"}`}
-              ></span>
-            </div>
-          </button>
+          <div className="hidden items-center gap-10 md:flex">
+            {Menu.map((item) => (
+              <NavigationLink key={item.label} {...item} />
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/*  Mobile Menu Navigation */}
-      <div
-        className={cn(
-          "bg-background fixed inset-x-0 top-[calc(100%+1rem)] flex flex-col rounded-2xl border p-6 transition-all duration-300 ease-in-out lg:hidden",
-          isMenuOpen
-            ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-4 opacity-0",
-        )}
-      >
-        <nav className="divide-border flex flex-1 flex-col divide-y">
-          {ITEMS.map((link) =>
-            link.dropdownItems ? (
-              <div key={link.label} className="py-4 first:pt-0 last:pb-0">
-                <button
-                  onClick={() =>
-                    setOpenDropdown(
-                      openDropdown === link.label ? null : link.label,
-                    )
-                  }
-                  className="text-primary flex w-full items-center justify-between text-base font-medium"
-                >
-                  {link.label}
-                  <ChevronRight
-                    className={cn(
-                      "size-4 transition-transform duration-200",
-                      openDropdown === link.label ? "rotate-90" : "",
-                    )}
-                  />
-                </button>
-                <div
-                  className={cn(
-                    "overflow-hidden transition-all duration-300",
-                    openDropdown === link.label
-                      ? "mt-4 max-h-[1000px] opacity-100"
-                      : "max-h-0 opacity-0",
-                  )}
-                >
-                  <div className="bg-muted/50 space-y-3 rounded-lg p-4">
-                    {link.dropdownItems.map((item) => (
-                      <Link
-                        key={item.title}
-                        href={item.href}
-                        className="group hover:bg-accent block rounded-md p-2 transition-colors"
-                        onClick={() => {
-                          setIsMenuOpen(false);
-                          setOpenDropdown(null);
-                        }}
-                      >
-                        <div className="transition-transform duration-200 group-hover:translate-x-1">
-                          <div className="text-primary font-medium">
-                            {item.title}
-                          </div>
-
-                          <p className="text-muted-foreground mt-1 text-sm">
-                            {item.description}
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={cn(
-                  "text-primary hover:text-primary/80 py-4 text-base font-medium transition-colors first:pt-0 last:pb-0",
-                  pathname === link.href && "text-muted-foreground",
-                )}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ),
-          )}
-        </nav>
+        <div className="flex items-center lg:gap-2.5">
+          <Link
+            href="/pelican-vault"
+            className="rounded-full bg-black px-4 py-2 text-sm font-bold text-white hover:bg-black/70 lg:px-6 lg:py-3"
+          >
+            <p className="hidden lg:block">Get Pelican Vault</p>
+            <p className="block text-xs lg:hidden">Get Vault</p>
+          </Link>
+          <SideMenu />
+        </div>
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ const identityItems = [
   {
     title: "Cryptographic Recovery Phrase",
     description:
-      "Your Pelican identity is backed by a secure mnemonic phrase — not a password, not an email, not a device.",
+      "Your Pelican identity is backed by a secure recovery phrase phrase — not a password, not an email, not a device.",
     icon: <ShieldCheck className="text-primary size-8" />,
     className: "",
   },
