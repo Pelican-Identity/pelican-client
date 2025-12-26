@@ -19,7 +19,11 @@ export const Hero = () => {
 
           <div className="mt-8 flex flex-wrap items-center gap-4 lg:flex-nowrap">
             <Button asChild variant={"success"} className="rounded-full p-6">
-              <a href="https://business.pelicanidentity.com/">
+              <a
+                href="https://dash.pelicanidentity.com/sign-in"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Integrate Pelican
               </a>
             </Button>
@@ -28,12 +32,12 @@ export const Hero = () => {
       </div>
 
       <div className="mt-12 max-lg:ml-6 max-lg:h-[550px] max-lg:overflow-hidden md:mt-20 lg:container lg:mt-24">
-        <div className="relative h-[793px] w-full">
+        <div className="relative h-[200px] w-full lg:h-[693px]">
           <Image
-            src="https://res.cloudinary.com/de0jr8mcm/image/upload/v1765112732/pelican/Dec_7_Screenshot_from_Compressor.io_shkfsk.png"
+            src="https://res.cloudinary.com/de0jr8mcm/image/upload/v1766752648/pelican/Dec_26_2025_Screenshot_from_Compressor.io_1_shos1n.png"
             alt="hero"
             fill
-            className="rounded-2xl bg-white object-contain object-top-left shadow-lg max-lg:rounded-tr-none"
+            className="rounded-2xl bg-white object-cover object-top-left shadow-lg max-lg:rounded-tr-none"
           />
         </div>
       </div>

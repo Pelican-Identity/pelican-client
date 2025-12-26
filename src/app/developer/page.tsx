@@ -11,7 +11,7 @@ import { HowItWorks } from "@/components/blocks/how-it-works";
 import { KycVerificationCTA } from "@/components/blocks/kyc-verification-cta";
 import { Navbar } from "@/components/blocks/navbar";
 import { PortableIdentity } from "@/components/blocks/portable-identity";
-import { Pricing } from "@/components/blocks/pricing";
+
 import { PrivacySecurity } from "@/components/blocks/privacy-security";
 import { WhyPelican } from "@/components/blocks/why-pelican";
 
@@ -31,7 +31,7 @@ export default function DeveloperPage() {
       <HowItWorks />
       <EnterpriseSecurity />
       <ComplianceReadiness />
-      <Pricing />
+      {/* <Pricing /> */}
       <ForDevelopers />
       <ForBusinesses />
       <PrivacySecurity />
