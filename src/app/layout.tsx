@@ -1,67 +1,11 @@
-import { Inter, Onest } from "next/font/google";
+import { Onest } from "next/font/google";
 
 import type { Metadata } from "next";
 
 import { StyleGlideProvider } from "@/components/styleglide-provider";
 
-import "@/styles/globals.css";
-
-// const Onest = localFont({
-//   src: [
-//     {
-//       path: "../../fonts/onest/Onest-Thin.ttf",
-//       weight: "100",
-//       style: "lighter",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-ExtraLight.ttf",
-//       weight: "100",
-//       style: "lighter",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-Light.ttf",
-//       weight: "200",
-//       style: "lighter",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-Regular.ttf",
-//       weight: "400",
-//       style: "normal",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-Medium.ttf",
-//       weight: "500",
-//       style: "normal",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-SemiBold.ttf",
-//       weight: "600",
-//       style: "normal",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-Bold.ttf",
-//       weight: "700",
-//       style: "normal",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-ExtraBold.ttf",
-//       weight: "800",
-//       style: "normal",
-//     },
-//     {
-//       path: "../../fonts/onest/Onest-Black.ttf",
-//       weight: "900",
-//       style: "normal",
-//     },
-//   ],
-//   variable: "--font-onest",
-//   display: "swap",
-// });
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+// @ts-ignore:next-line
+import "../styles/globals.css";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -130,9 +74,7 @@ export default function RootLayout({
           src="https://tweakcn.com/live-preview.min.js"
         />
       </head>
-      <body
-        className={`${onest.className} ${inter.variable} bg-white antialiased`}
-      >
+      <body className={`${onest.className} bg-white antialiased`}>
         <StyleGlideProvider />
         <main className="">{children}</main>
       </body>

@@ -1,13 +1,8 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check } from "lucide-react";
-import { motion } from "motion/react";
-import { useAction } from "next-safe-action/hooks";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { serverAction } from "@/actions/server-action";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
@@ -42,52 +37,10 @@ export function ContactForm() {
       agree: false,
     } as unknown as Schema,
   });
-  const formAction = useAction(serverAction, {
-    onSuccess: () => {
-      // TODO: show success message
-      form.reset();
-    },
-    onError: () => {
-      // TODO: show error message
-    },
-  });
-  const handleSubmit = form.handleSubmit(async (data: Schema) => {
-    formAction.execute(data);
-  });
 
-  const { isExecuting, hasSucceeded } = formAction;
-  if (hasSucceeded) {
-    return (
-      <div className="w-full gap-2 rounded-md border p-2 sm:p-5 md:p-8">
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, stiffness: 300, damping: 25 }}
-          className="h-full px-3 py-6"
-        >
-          <motion.div
-            initial={{ scale: 0.5 }}
-            animate={{ scale: 1 }}
-            transition={{
-              delay: 0.3,
-              type: "spring",
-              stiffness: 500,
-              damping: 15,
-            }}
-            className="mx-auto mb-4 flex w-fit justify-center rounded-full border p-2"
-          >
-            <Check className="size-8" />
-          </motion.div>
-          <h2 className="mb-2 text-center text-2xl font-bold text-pretty">
-            Thank you
-          </h2>
-          <p className="text-muted-foreground text-center text-lg text-pretty">
-            Form submitted successfully, we will get back to you soon
-          </p>
-        </motion.div>
-      </div>
-    );
-  }
+  const handleSubmit = form.handleSubmit(async (data: Schema) => {
+    console.log(data);
+  });
 
   return (
     <Form {...form}>
@@ -240,11 +193,6 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <div className="flex w-full items-center justify-end pt-3">
-          <Button className="rounded-lg" size="sm">
-            {isExecuting ? "Submitting..." : "Submit"}
-          </Button>
-        </div>
       </form>
     </Form>
   );
