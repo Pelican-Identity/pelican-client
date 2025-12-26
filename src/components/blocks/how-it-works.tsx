@@ -18,7 +18,7 @@ const steps = [
     icon: Handshake,
   },
   {
-    title: "KYC / Compliance (Optional)",
+    title: "KYC / Compliance ",
     description:
       "If required, Pelican Vault completes enrollment and delivers verified identity data.",
     icon: ShieldCheck,

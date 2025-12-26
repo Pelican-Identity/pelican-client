@@ -18,21 +18,23 @@ const docs: {
 }[] = [
   {
     image:
-      "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766752648/pelican/Dec_26_2025_Screenshot_from_Compressor.io_1_shos1n.png",
+      "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766766173/pelican/sdks_react_i7zbqt.png",
     title: "React/Next.js",
     url: "https://www.npmjs.com/package/@pelican-identity/react",
   },
+
   {
     image:
-      "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766752648/pelican/Dec_26_2025_Screenshot_from_Compressor.io_1_shos1n.png",
-    title: "React Native",
-    url: "https://www.npmjs.com/package/@pelican-identity/react-native",
+      "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766766173/pelican/sdks_vanilla_j2ymv3.png",
+    title: "Vanilla js, Svelte, Vue",
+    url: "https://www.npmjs.com/package/@pelican-identity/vanilla",
   },
   {
     image:
-      "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766752648/pelican/Dec_26_2025_Screenshot_from_Compressor.io_1_shos1n.png",
-    title: "Vanilla js, Svelte, Vue",
-    url: "https://www.npmjs.com/package/@pelican-identity/vanilla",
+      "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766766173/pelican/sdks_native_gs3x8p.png",
+
+    title: "React Native",
+    url: "https://www.npmjs.com/package/@pelican-identity/react-native",
   },
 ];
 
@@ -63,16 +65,21 @@ export function ForDevelopers() {
                 </div>
               ))}
             </div>
-            <p>Documentations</p>
-            <div className="mt-6 flex flex-wrap gap-4">
+            <p className="text-foreground font-semibold">Documentations</p>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               {docs.map((doc) => (
-                <div key={doc.title}>
-                  <Image
-                    src={doc.image}
-                    alt={doc.title}
-                    width={100}
-                    height={100}
-                  />
+                <div
+                  key={doc.title}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <div className="flex h-10 items-center justify-center">
+                    <Image
+                      src={doc.image}
+                      alt={doc.title}
+                      width={80}
+                      height={80}
+                    />
+                  </div>
                   <a
                     href={doc.url}
                     target="_blank"

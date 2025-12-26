@@ -22,11 +22,10 @@ export const ComplianceReadiness = () => {
         </div>
 
         {/* Card Container */}
-        <div className="bg-background/60 supports-[backdrop-filter]:bg-background/40 border-border rounded-3xl border p-10 shadow-lg backdrop-blur-md md:p-14">
+        <div className="bg-background/60 supports-backdrop-filter:bg-background/40 border-border rounded-3xl border p-10 shadow-lg backdrop-blur-md md:p-14">
           <div className="grid gap-8 md:grid-cols-2">
             {[
               "GDPR aligned",
-              "NDPR aligned (Nigeria)",
               "Consent-first architecture",
               "Data minimization by design",
               "Business remains the data controller",
