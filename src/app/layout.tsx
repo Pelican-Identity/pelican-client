@@ -17,8 +17,7 @@ export const metadata: Metadata = {
     default: "Pelican Identity",
     template: "%s | Mainline",
   },
-  description:
-    "Privacy-first, self-owned identity for authentication, access, and verification — fully controlled by you.",
+  description: "The Identity layer for our physical and digital world.",
   keywords: ["Pelican", "Identity", "Authentication", "Access", "Verification"],
 
   robots: {
@@ -38,24 +37,25 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Pelican Identity",
-    description:
-      "Privacy-first, self-owned identity for authentication, access, and verification — fully controlled by you.",
+    description: "The Identity layer for our physical and digital world.",
     siteName: "Pelican Identity",
-    // images: [
-    //   {
-    //     url: "/og-image.jpg",
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "Pelican Identity",
-    //   },
-    // ],
+    images: [
+      {
+        url: "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766865213/pelican/shots-02_txnahx.png",
+        alt: "Pelican Identity",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pelican Identity",
-    description:
-      "Privacy-first, self-owned identity for authentication, access, and verification — fully controlled by you.",
-    // images: ["/og-image.jpg"],
+    description: "The Identity layer for our physical and digital world.",
+    images: [
+      {
+        url: "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766865213/pelican/shots-02_txnahx.png",
+        alt: "Pelican Identity",
+      },
+    ],
     creator: "@ausrobdev",
   },
 };
@@ -67,13 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          async
-          crossOrigin="anonymous"
-          src="https://tweakcn.com/live-preview.min.js"
-        />
-      </head>
+      <head></head>
       <body className={`${onest.className} bg-white antialiased`}>
         <StyleGlideProvider />
         <main className="">{children}</main>

@@ -102,11 +102,11 @@ export default function PelicanVaultPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col gap-4 sm:flex-row"
             >
-              <Button size="lg" className="shadow-primary/25 gap-2 shadow-lg">
+              <Button variant={"success"} className="rounded-full p-6">
                 <IOSIcon />
                 Download for iOS
               </Button>
-              <Button size="lg" variant="outline" className="gap-2">
+              <Button variant={"outline"} className="rounded-full p-6">
                 <AndroidIcon />
                 Download for Android
               </Button>
@@ -120,15 +120,15 @@ export default function PelicanVaultPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="order-1 mx-auto max-w-sm lg:order-2"
           >
-            <Card className="border-border/50 bg-card/50 shadow-primary/10 overflow-hidden shadow-2xl">
+            <Card className="bg-card/50 shadow-primary/10 overflow-hidden rounded-none border-none">
               <CardContent className="p-0">
                 <div className="relative aspect-4/5 lg:aspect-3/4">
                   <img
                     src={
-                      "https://i.pinimg.com/736x/b3/35/ec/b335ecf77d646b98d09654d0bd1a9aca.jpg"
+                      "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766865213/pelican/shots-01_zr3uz3.png"
                     }
                     alt="Pelican Vault security visualization"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                   <div className="from-background/60 absolute inset-0 bg-linear-to-t via-transparent to-transparent" />
                   <div className="absolute right-6 bottom-6 left-6">
@@ -154,7 +154,7 @@ export default function PelicanVaultPage() {
       </section>
 
       {/* Features Grid */}
-      <section className="min-h-screen px-6 py-20">
+      <section className="min-h-screen px-2 py-20 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="grid gap-8 md:grid-cols-2">
             {features.map((feature, index) => (
@@ -183,7 +183,7 @@ export default function PelicanVaultPage() {
       </section>
 
       {/* Transparency Section */}
-      <section className="bg-card/30 min-h-screen px-6 py-20">
+      <section className="bg-card/30 min-h-screen px-2 py-20 md:px-6">
         <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
