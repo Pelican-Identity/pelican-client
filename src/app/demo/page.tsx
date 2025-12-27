@@ -33,11 +33,11 @@ const Page = () => {
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Left Column - Auth Component */}
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col items-center justify-center gap-4 rounded-xl bg-white p-6 shadow-sm">
+              <div className="flex flex-col items-center justify-center gap-4 rounded-xl bg-white p-6">
                 <h2 className="text-lg font-semibold text-gray-900">
                   Pelican Identity SDK Demo
                 </h2>
-                <p className="text-center text-sm text-gray-600">
+                <p className="text-center text-xs text-gray-600">
                   Click the button below to initiate authentication
                 </p>
                 <PelicanAuth
@@ -50,7 +50,7 @@ const Page = () => {
                 />
               </div>
 
-              <div className="rounded-xl bg-white p-6 shadow-sm">
+              <div className="rounded-xl bg-white p-6">
                 <h3 className="mb-3 text-sm font-semibold text-gray-900">
                   Authentication Type
                 </h3>
@@ -108,7 +108,7 @@ const Page = () => {
             {/* Right Column - Results Display */}
             <div className="flex max-w-[90svw] flex-col gap-4 lg:max-w-full">
               {result && (
-                <div className="rounded-xl bg-white p-6 shadow-sm">
+                <div className="bg-white p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-100">
@@ -159,7 +159,7 @@ const Page = () => {
               )}
 
               {error && (
-                <div className="rounded-xl bg-white p-6 shadow-sm">
+                <div className="rounded-xl bg-white p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-red-100">
@@ -210,7 +210,7 @@ const Page = () => {
               )}
 
               {!result && !error && (
-                <div className="rounded-xl bg-white p-12 text-center shadow-sm">
+                <div className="rounded-xl bg-white p-12 text-center">
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
                     <svg
                       className="h-8 w-8 text-gray-400"
