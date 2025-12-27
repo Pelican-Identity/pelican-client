@@ -106,7 +106,7 @@ const Page = () => {
             </div>
 
             {/* Right Column - Results Display */}
-            <div className="flex flex-col gap-4">
+            <div className="flex max-w-[90svw] flex-col gap-4 lg:max-w-full">
               {result && (
                 <div className="rounded-xl bg-white p-6 shadow-sm">
                   <div className="mb-4 flex items-center justify-between">
