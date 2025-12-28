@@ -36,12 +36,12 @@ const Pricing = ({ className }) => {
       equivalent: "300,000 logins with $3 credit",
     },
     {
-      title: "Email Verification",
+      title: "Verified emails",
       price: "$0.01 per verification",
       equivalent: "300 verifications with $3 credit",
     },
     {
-      title: "Phone Verification",
+      title: "Verified phone numbers",
       price: "$0.01 per verification",
       equivalent: "300 verifications with $3 credit",
     },
@@ -150,19 +150,19 @@ const comparisonFeatures = [
         enterprise: "Volume pricing",
       },
       {
-        name: "Email Verification",
+        name: "Verified emails",
         free: "$0.01 each",
         startup: "$0.01 each",
         enterprise: "Volume pricing",
       },
       {
-        name: "Phone Verification",
+        name: "Verified phone numbers",
         free: "$0.01 each",
         startup: "$0.01 each",
         enterprise: "Volume pricing",
       },
       {
-        name: "ID Verification (Tier 1)",
+        name: "ID Verification & Biometric KYC",
         free: "$0.40 each",
         startup: "$0.40 each",
         enterprise: "Volume pricing",
