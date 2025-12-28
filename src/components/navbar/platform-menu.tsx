@@ -14,28 +14,28 @@ import React from "react";
 
 const menuItems = [
   {
-    href: "#",
+    href: "/authentication",
     label: "Authentication",
     description:
       "Fast, lightweight and secure authentication for new and returning users.",
     icon: <UsersIcon className="h-4 w-4 text-gray-600" />,
   },
   {
-    href: "#",
+    href: "/identity-claims",
     label: "Identity Claims",
     description:
       "Collect verified user attributes without building OTP flows, magic links, password resets, or SMS verification.",
     icon: <DevicePhoneMobileIcon className="h-4 w-4 text-gray-600" />,
   },
   {
-    href: "#",
+    href: "/kyc-id-verification",
     label: "KYC & ID Verification",
     description:
       "Offload the complexity of KYC & ID verification to Pelican, stay compliant with necessary regulations.",
     icon: <IdentificationIcon className="h-4 w-4 text-gray-600" />,
   },
   {
-    href: "#",
+    href: "/access-control",
     label: "Access Control",
     description:
       "Define and enforce on-premise access control for employees, guests, and event attendees.",

@@ -2,6 +2,7 @@ import { Footer } from "@/components/blocks/footer";
 import { Navbar } from "@/components/blocks/navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -9,7 +10,7 @@ const Home = () => {
       <Navbar />
       <div className="h-20" />
 
-      <section className="relative h-[80svh] w-full grid-cols-2 items-end justify-center gap-x-10 bg-white px-2 py-2 md:mt-10 md:px-20 lg:grid">
+      <section className="relative w-full grid-cols-2 items-end justify-center gap-x-10 bg-white px-2 py-2 md:mt-10 md:px-20 lg:grid lg:h-[80svh]">
         <video
           src="https://res.cloudinary.com/de0jr8mcm/video/upload/v1764921305/pelican/pelicanherovideo_pl1kwc.mp4"
           className="col-span-1 h-[20svh] w-full rounded-2xl object-cover md:h-[30svh] lg:h-full"
@@ -39,49 +40,55 @@ const Home = () => {
 
       <div className="relative">
         {/*  */}
-        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
-          <div>
-            <h2 className="text-2xl font-light">A New Approach to Identity</h2>
-          </div>
-          <div className="col-span-2 w-full space-y-6 lg:max-w-2xl">
-            <h3 className="text-6xl text-wrap">
-              You shouldn’t have to prove who you are over and over again.
-            </h3>
-            <p>
-              Every day, we sign up, verify, upload documents, reset passwords,
-              answer questions we’ve answered a hundred times. It’s slow. It’s
-              fragmented. It’s exhausting.
-              <br />
-              <br />
-              Pelican gives every person{" "}
-              <strong> one secure identity they own</strong>, and gives
-              organizations{" "}
-              <strong>
-                {" "}
-                a trusted way to work with real people without friction or doubt
-              </strong>
-              .
-            </p>
 
-            <ul>
-              <li>No passwords.</li>
-              <li>No repeated onboarding.</li>
-              <li>No trading privacy for convenience.</li>
-            </ul>
+        <div className="w-screen items-center justify-center lg:flex lg:min-h-screen">
+          <div className="col-span-1 grid w-full gap-4 px-8 py-20 lg:grid-cols-3">
+            <div>
+              <h2 className="text-2xl font-light">
+                A New Approach to Identity
+              </h2>
+            </div>
+            <div className="col-span-2 w-full space-y-6 lg:max-w-2xl">
+              <h3 className="text-4xl font-bold text-wrap lg:text-6xl">
+                You shouldn’t have to prove who you are over and over again.
+              </h3>
+              <p>
+                Every day, we sign up, verify, upload documents, reset
+                passwords, answer questions we’ve answered a hundred times. It’s
+                slow. It’s fragmented. It’s exhausting.
+                <br />
+                <br />
+                Pelican gives every person{" "}
+                <strong> one secure identity they own</strong>, and gives
+                organizations{" "}
+                <strong>
+                  {" "}
+                  a trusted way to work with real people without friction or
+                  doubt
+                </strong>
+                .
+              </p>
 
-            <p className="text-lg underline">
-              Just identity — simple, human, and in your hands.
-            </p>
+              <ul>
+                <li>No passwords.</li>
+                <li>No repeated onboarding.</li>
+                <li>No trading privacy for convenience.</li>
+              </ul>
+
+              <p className="text-lg underline">
+                Just identity — simple, human, and in your hands.
+              </p>
+            </div>
           </div>
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:min-h-screen lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">For People</h2>
           </div>
           <div className="col-span-2 w-full space-y-6 lg:max-w-xl">
-            <h3 className="text-6xl text-wrap">
+            <h3 className="text-4xl font-bold text-wrap lg:text-6xl">
               Your identity, finally under your control.
             </h3>
             <p>
@@ -118,14 +125,16 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:min-h-screen lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">
               For Businesses & Institutions
             </h2>
           </div>
           <div className="col-span-2 w-full space-y-6 lg:max-w-xl">
-            <h3 className="text-6xl text-wrap">Trust, without the burden.</h3>
+            <h3 className="text-4xl font-bold text-wrap lg:text-6xl">
+              Trust, without the burden.
+            </h3>
             <p>
               Pelican helps you connect with real, verified people — without
               running complex verification systems of your own.
@@ -158,12 +167,14 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:min-h-screen lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Our Philosophy</h2>
           </div>
           <div className="col-span-2 w-full space-y-6 lg:max-w-2xl">
-            <h3 className="text-6xl text-wrap">Human-First Identity.</h3>
+            <h3 className="text-4xl font-bold text-wrap lg:text-6xl">
+              Human-First Identity.
+            </h3>
             <p>
               The world is entering an era of AI, deepfakes, global mobility,
               remote work, digital services, and rapid physical access systems.
@@ -266,12 +277,14 @@ const Home = () => {
         </div>
 
         {/*  */}
-        <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
+        <div className="col-span-1 grid gap-4 px-8 py-20 lg:min-h-screen lg:grid-cols-3">
           <div>
             <h2 className="text-2xl font-light">Why It Matters Now</h2>
           </div>
           <div className="col-span-2 w-full space-y-6">
-            <h3 className="text-6xl text-wrap">We’re entering a time where:</h3>
+            <h3 className="text-4xl font-bold text-wrap lg:text-6xl">
+              We’re entering a time where:
+            </h3>
             <ul className="list-inside list-disc">
               <li>AI can imitate faces and voices</li>
               <li>Fraud is increasing</li>
@@ -289,7 +302,15 @@ const Home = () => {
               Pelican is built for this new reality — one where identity is{" "}
               <strong>human, secure,</strong> and <strong>respected</strong> .
             </p>
-            <Button>Get Pelican</Button>
+            <Button asChild variant={"success"} className="rounded-full p-6">
+              <a
+                href="https://dash.pelicanidentity.com/sign-in"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get started with Pelican{" "}
+              </a>
+            </Button>
           </div>
         </div>
 
@@ -311,6 +332,13 @@ const Home = () => {
                 It’s a foundation — for people, for institutions, for everything
                 our world is becoming.
               </p>
+              <Button
+                asChild
+                variant={"success"}
+                className="rounded-full bg-black p-6 text-white hover:bg-black/80"
+              >
+                <Link href="/pelican-vault">Get Identity Vault</Link>
+              </Button>
             </div>
           </div>
         </div>
