@@ -14,11 +14,11 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 
 const ITEMS = [
   { label: "Developers", href: "/developer" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Privacy Policy", href: "/#compliance" },
-  { label: "Terms of Use", href: "/#compliance" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Use", href: "/terms" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Contact Us", href: "mailto:support@pelicanidentity.com" },
 ];
 
 export function SideMenu() {

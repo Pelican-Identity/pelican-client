@@ -37,7 +37,7 @@ export const Pricing = ({ className }: PricingProps) => {
         </Badge>
 
         <h2 className="container text-center text-3xl tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
-          Get started with $5 free credit
+          Get started with $3 free credit
         </h2>
 
         <p className="text-muted-foreground mx-auto mt-2 mb-10 max-w-3xl">
