@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Pelican Identity",
     images: [
       {
-        url: "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766865213/pelican/shots-02_txnahx.png",
+        url: "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766906501/pelican/shots-03_rshohi.png",
         alt: "Pelican Identity",
       },
     ],
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description: "The Identity layer for our physical and digital world.",
     images: [
       {
-        url: "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766865213/pelican/shots-02_txnahx.png",
+        url: "https://res.cloudinary.com/de0jr8mcm/image/upload/v1766906501/pelican/shots-03_rshohi.png",
         alt: "Pelican Identity",
       },
     ],
