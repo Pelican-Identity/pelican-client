@@ -108,7 +108,7 @@ const Page = () => {
             {/* Right Column - Results Display */}
             <div className="flex max-w-[90svw] flex-col gap-4 lg:max-w-full">
               {result && (
-                <div className="bg-white p-6">
+                <div className="rounded-xl bg-white p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-100">
