@@ -13,7 +13,7 @@ import { Navbar } from "@/components/blocks/navbar";
 import Link from "next/link";
 import { Footer } from "@/components/blocks/footer";
 
-export const FeatureCard = ({ icon: Icon, title, description }) => (
+const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg">
     <div className="bg-primary/10 mb-4 flex h-12 w-12 items-center justify-center rounded-lg">
       <Icon className="h-6 w-6 text-black" />
@@ -32,7 +32,7 @@ const AccessMethodCard = ({ icon: Icon, title }) => (
   </div>
 );
 
-export const FAQItem = ({ question, answer }) => (
+const FAQItem = ({ question, answer }) => (
   <div className="mb-6 border-b border-gray-200 pb-6 last:border-0">
     <h3 className="mb-2 text-lg font-semibold">{question}</h3>
     <p className="text-gray-600">{answer}</p>
