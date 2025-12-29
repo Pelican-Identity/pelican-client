@@ -52,8 +52,8 @@ const Pricing = ({ className }) => {
     },
     {
       title: "Access control",
-      price: "$0.01 per 100 access requests",
-      equivalent: "300 access requests with $3 credit",
+      price: "$0.01 per 100 access grants",
+      equivalent: "3,000 access grants with $3 credit",
     },
   ];
 
@@ -97,6 +97,7 @@ const Pricing = ({ className }) => {
             <ul className="space-y-1 text-sm text-green-800">
               <li>• 300,000 user logins (extremely cost-effective)</li>
               <li>• 300 signups or email/phone verifications</li>
+              <li>• 3,000 access grants</li>
               <li>• 7 complete identity verifications</li>
               <li>• Mix and match based on your needs</li>
             </ul>
