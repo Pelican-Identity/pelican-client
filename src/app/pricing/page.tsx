@@ -37,18 +37,23 @@ const Pricing = ({ className }) => {
     },
     {
       title: "Verified emails",
-      price: "$0.01 per verification",
-      equivalent: "300 verifications with $3 credit",
+      price: "$0.01 per email request",
+      equivalent: "300 claims with $3 credit",
     },
     {
       title: "Verified phone numbers",
-      price: "$0.01 per verification",
-      equivalent: "300 verifications with $3 credit",
+      price: "$0.01 per phone request",
+      equivalent: "300 claims with $3 credit",
     },
     {
-      title: "ID Verification  & Biometric KYC",
+      title: "ID Verification & Biometric KYC",
       price: "$0.40 per verification",
       equivalent: "7 verifications with $3 credit",
+    },
+    {
+      title: "Access control",
+      price: "$0.01 per 100 access requests",
+      equivalent: "300 access requests with $3 credit",
     },
   ];
 
@@ -165,6 +170,12 @@ const comparisonFeatures = [
         name: "ID Verification & Biometric KYC",
         free: "$0.40 each",
         startup: "$0.40 each",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "Access control",
+        free: "$0.01/100",
+        startup: "$0.01/100",
         enterprise: "Volume pricing",
       },
     ],
