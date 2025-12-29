@@ -26,33 +26,44 @@ const CollapsibleContent = ({ children, className = "" }) => (
 const Pricing = ({ className }) => {
   const pricing = [
     {
-      title: "User Signup",
+      title: "Signup",
+      description:
+        "Onboard new users via SDK (web & mobile) and dashboard managed access control",
       price: "$0.01 per signup",
       equivalent: "300 signups with $3 credit",
     },
     {
-      title: "User Login",
+      title: "Login",
+      description:
+        "Authentication users via SDK (web & mobile) and dashboard managed access control",
       price: "$0.01 per 1,000 logins",
       equivalent: "300,000 logins with $3 credit",
     },
     {
-      title: "Verified emails",
+      title: "Verified Emails",
+      description: "Email ownership and trusted claim at signup",
       price: "$0.01 per email request",
       equivalent: "300 claims with $3 credit",
     },
     {
-      title: "Verified phone numbers",
+      title: "Verified Phone Numbers",
+      description:
+        "Phone ownership and trusted claim at signup (Global SMS support)",
       price: "$0.01 per phone request",
       equivalent: "300 claims with $3 credit",
     },
     {
       title: "ID Verification & Biometric KYC",
+      description:
+        "Government ID and biometric checks via SDK and dashboard managed access control",
       price: "$0.40 per verification",
       equivalent: "7 verifications with $3 credit",
     },
     {
-      title: "Access control",
-      price: "$0.01 per 100 access grants",
+      title: "Managed Access Control",
+      description:
+        "Human-managed access grants via the Pelican dashboard for offices/facilities",
+      price: "$0.01 per 10 access grants",
       equivalent: "3,000 access grants with $3 credit",
     },
   ];
@@ -77,11 +88,17 @@ const Pricing = ({ className }) => {
             {pricing.map((item, idx) => (
               <div
                 key={idx}
-                className="flex flex-col gap-2 border-b border-dashed border-gray-200 pb-6 last:border-none last:pb-0 sm:flex-row sm:justify-between sm:gap-0"
+                className="flex flex-col gap-2 border-b border-dashed border-gray-200 pb-6 last:border-none last:pb-0 sm:flex-row sm:justify-between"
               >
-                <span className="text-left font-semibold text-gray-900">
-                  {item.title}
-                </span>
+                <div className="text-left">
+                  <div className="font-semibold text-gray-900">
+                    {item.title}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {item.description}
+                  </div>
+                </div>
+
                 <div className="text-left sm:text-right">
                   <div className="font-bold">{item.price}</div>
                   <div className="text-xs text-gray-500">{item.equivalent}</div>
@@ -90,16 +107,48 @@ const Pricing = ({ className }) => {
             ))}
           </div>
 
+          <div className="mt-8 rounded-xl border border-gray-100 bg-gray-50 p-6">
+            <h3 className="mb-4 font-semibold text-gray-900">
+              SDK Logins vs Managed Access Control
+            </h3>
+
+            <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
+              <div className="rounded-lg bg-white p-4">
+                <div className="mb-1 font-semibold text-gray-900">
+                  SDK Logins
+                </div>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Triggered programmatically via SDK</li>
+                  <li>• Designed for high-volume user authentication</li>
+                  <li>• Best for apps, websites, and embedded flows</li>
+                  <li>• Priced for scale</li>
+                </ul>
+              </div>
+
+              <div className="rounded-lg bg-white p-4">
+                <div className="mb-1 font-semibold text-gray-900">
+                  Managed Access Control
+                </div>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Granted manually or by policy in the dashboard</li>
+                  <li>• Designed for physical and admin-controlled access</li>
+                  <li>• Best for offices, facilities, and secure zones</li>
+                  <li>• Priced for operational control</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-8 rounded-xl bg-green-50 p-6 text-left">
             <h3 className="mb-2 font-semibold text-green-900">
               💡 What you get with $3 credit:
             </h3>
             <ul className="space-y-1 text-sm text-green-800">
-              <li>• 300,000 user logins (extremely cost-effective)</li>
-              <li>• 300 signups or email/phone verifications</li>
-              <li>• 3,000 access grants</li>
-              <li>• 7 complete identity verifications</li>
-              <li>• Mix and match based on your needs</li>
+              <li>• Up to 300,000 SDK-based user logins</li>
+              <li>• 300 signups or verified email/phone claims</li>
+              <li>• 3,000 managed access grants</li>
+              <li>• 7 full KYC identity verifications</li>
+              <li>• Mix and match — credits apply across all services</li>
             </ul>
           </div>
         </div>
@@ -174,9 +223,9 @@ const comparisonFeatures = [
         enterprise: "Volume pricing",
       },
       {
-        name: "Access control",
-        free: "$0.01/100",
-        startup: "$0.01/100",
+        name: "Managed Access Control",
+        free: "$0.01/10",
+        startup: "$0.01/10",
         enterprise: "Volume pricing",
       },
     ],
@@ -221,12 +270,7 @@ const comparisonFeatures = [
         startup: "$3.00",
         enterprise: "Custom",
       },
-      {
-        name: "Rate Limits",
-        free: "Standard",
-        startup: "Higher",
-        enterprise: "Custom",
-      },
+
       {
         name: "Team Members",
         free: "Unlimited",
