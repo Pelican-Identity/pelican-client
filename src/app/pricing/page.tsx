@@ -41,23 +41,23 @@ const Pricing = ({ className }) => {
     },
     {
       title: "Verified Emails",
-      description: "Email ownership and trusted claim at signup",
+      description: "Email ownership and trusted claim at signup (optional)",
       price: "$0.01 per email request",
       equivalent: "300 claims with $3 credit",
     },
     {
       title: "Verified Phone Numbers",
       description:
-        "Phone ownership and trusted claim at signup (Global SMS support)",
-      price: "$0.01 per phone request",
-      equivalent: "300 claims with $3 credit",
+        "Phone verification and trusted claim at signup (optional + Global SMS support)",
+      price: "$0.10 per phone request",
+      equivalent: "30 claims with $3 credit",
     },
     {
       title: "ID Verification & Biometric KYC",
       description:
         "Government ID and biometric checks via SDK and dashboard managed access control",
-      price: "$0.40 per verification",
-      equivalent: "7 verifications with $3 credit",
+      price: "$0.50 per verification",
+      equivalent: "6 verifications with $3 credit",
     },
     {
       title: "Managed Access Control",
@@ -212,14 +212,14 @@ const comparisonFeatures = [
       },
       {
         name: "Verified phone numbers",
-        free: "$0.01 each",
-        startup: "$0.01 each",
+        free: "$0.10 each",
+        startup: "$0.10 each",
         enterprise: "Volume pricing",
       },
       {
         name: "ID Verification & Biometric KYC",
-        free: "$0.40 each",
-        startup: "$0.40 each",
+        free: "$0.50 each",
+        startup: "$0.50 each",
         enterprise: "Volume pricing",
       },
       {
