@@ -16,6 +16,7 @@ import { Navbar } from "@/components/blocks/navbar";
 import AndroidIcon from "../../../public/android-icon";
 import IOSIcon from "../../../public/ios-icon";
 import { VaultFooter } from "@/components/blocks/vault-footer";
+import Link from "next/link";
 
 const features = [
   {
@@ -102,9 +103,16 @@ export default function PelicanVaultPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col gap-4 sm:flex-row"
             >
-              <Button variant={"success"} className="rounded-full p-6">
-                <IOSIcon />
-                Download for iOS
+              <Button variant={"success"} className="rounded-full p-6" asChild>
+                <Link
+                  href={
+                    "https://apps.apple.com/us/app/pelican-vault/id6755097751"
+                  }
+                  target="_blank"
+                >
+                  <IOSIcon />
+                  Download for iOS
+                </Link>
               </Button>
               <Button variant={"outline"} className="rounded-full p-6">
                 <AndroidIcon />

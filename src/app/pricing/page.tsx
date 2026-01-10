@@ -2,75 +2,177 @@
 
 import React, { useState } from "react";
 import { Check, ChevronsUpDown, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/blocks/navbar";
 import { Background } from "@/components/background";
 import { Footer } from "@/components/blocks/footer";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
-const Collapsible = ({ children }) => (
-  <div className="relative">{children}</div>
+const Badge = ({ children, variant = "default", className = "" }) => (
+  <span
+    className={cn(
+      "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold",
+      variant === "outline"
+        ? "border border-gray-300 bg-white text-gray-700"
+        : "bg-gray-900 text-white",
+      className,
+    )}
+  >
+    {children}
+  </span>
 );
 
-const CollapsibleTrigger = ({ children, className = "" }) => (
-  <div className={cn("cursor-pointer", className)}>{children}</div>
-);
+const Button = ({
+  children,
+  variant = "default",
+  className = "",
+  asChild,
+  ...props
+}) => {
+  const Component = asChild ? "div" : "button";
+  return (
+    <Component
+      className={cn(
+        "inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium transition-colors",
+        variant === "outline"
+          ? "border border-gray-300 bg-white text-gray-900 hover:bg-gray-50"
+          : "bg-gray-900 text-white hover:bg-gray-800",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
+};
 
-const CollapsibleContent = ({ children, className = "" }) => (
-  <div className={cn("mt-2", className)}>{children}</div>
+const Link = ({ href, children, ...props }) => (
+  <a href={href} {...props}>
+    {children}
+  </a>
 );
 
 // Pricing Hero Section
 const Pricing = ({ className }) => {
-  const pricing = [
+  const pricingCategories = [
     {
-      title: "Signup",
-      description:
-        "Onboard new users via SDK (web & mobile) and dashboard managed access control",
-      price: "$0.01 per signup",
-      equivalent: "300 signups with $3 credit",
+      category: "SDK Authentication",
+      description: "Programmatic user authentication for apps and websites",
+      id: "sdk-authentication",
+      items: [
+        {
+          title: "Basic Signup",
+          description: "User registration via SDK (web & mobile)",
+          price: "$0.01 per signup",
+          equivalent: "300 signups with $3 credit",
+        },
+        {
+          title: "Signup + Verified Email",
+          description: "Registration with email ownership verification",
+          price: "$0.02 per signup",
+          equivalent: "150 signups with $3 credit",
+        },
+        {
+          title: "Signup + Verified Phone",
+          description: "Registration with phone verification (Global SMS)",
+          price: "$0.11 per signup",
+          equivalent: "27 signups with $3 credit",
+        },
+        {
+          title: "User Login",
+          description: "Authenticate existing users",
+          price: "$0.01 per 1,000 logins",
+          equivalent: "300,000 logins with $3 credit",
+        },
+        {
+          title: "ID Verification & Biometric KYC",
+          description: "Government ID and biometric identity checks",
+          price: "$0.50 per verification",
+          equivalent: "6 verifications with $3 credit",
+        },
+      ],
     },
     {
-      title: "Login",
+      category: "Managed Access Control",
       description:
-        "Authentication users via SDK (web & mobile) and dashboard managed access control",
-      price: "$0.01 per 1,000 logins",
-      equivalent: "300,000 logins with $3 credit",
+        "Dashboard-controlled physical access management for offices and facilities",
+      id: "managed-access-control",
+      items: [
+        {
+          title: "User Signup",
+          description: "Create access control accounts",
+          price: "$0.01 per signup",
+          equivalent: "300 signups with $3 credit",
+        },
+        {
+          title: "Signup + Verified Email",
+          description: "Account creation with verified email",
+          price: "$0.02 per signup",
+          equivalent: "150 signups with $3 credit",
+        },
+        {
+          title: "Signup + Verified Phone",
+          description: "Account creation with verified phone",
+          price: "$0.11 per signup",
+          equivalent: "27 signups with $3 credit",
+        },
+        {
+          title: "Access Grant",
+          description: "Grant facility/building access to existing users",
+          price: "$0.01 per 10 grants",
+          equivalent: "3,000 grants with $3 credit",
+        },
+        {
+          title: "ID Verification & Biometric KYC",
+          description: "Verify identity for secure facility access",
+          price: "$0.50 per verification",
+          equivalent: "6 verifications with $3 credit",
+        },
+      ],
     },
     {
-      title: "Verified Emails",
-      description: "Email ownership and trusted claim at signup (optional)",
-      price: "$0.01 per email request",
-      equivalent: "300 claims with $3 credit",
-    },
-    {
-      title: "Verified Phone Numbers",
+      category: "Event Registration",
+      id: "event-registration",
       description:
-        "Phone verification and trusted claim at signup (optional + Global SMS support)",
-      price: "$0.10 per phone request",
-      equivalent: "30 claims with $3 credit",
-    },
-    {
-      title: "ID Verification & Biometric KYC",
-      description:
-        "Government ID and biometric checks via SDK and dashboard managed access control",
-      price: "$0.50 per verification",
-      equivalent: "6 verifications with $3 credit",
-    },
-    {
-      title: "Managed Access Control",
-      description:
-        "Human-managed access grants via the Pelican dashboard for offices/facilities",
-      price: "$0.01 per 10 access grants",
-      equivalent: "3,000 access grants with $3 credit",
+        "Attendee registration and check-in for events and gatherings",
+      items: [
+        {
+          title: "Basic Registration",
+          description: "Collect attendee info (emails/phones not verified)",
+          price: "FREE",
+          equivalent: "Unlimited registrations",
+          highlight: true,
+        },
+        {
+          title: "Pelican Verified + Email",
+          description: "Registration with verified email ownership",
+          price: "$0.02 per registration",
+          equivalent: "1,500 registrations with $3 credit",
+        },
+        {
+          title: "Pelican Verified + Phone",
+          description: "Registration with verified phone number",
+          price: "$0.11 per registration",
+          equivalent: "273 registrations with $3 credit",
+        },
+        {
+          title: "Attendee Check-in",
+          description: "Attendee check-in at events",
+          price: "$0.01 per 5 check-ins",
+          equivalent: "1,500 check-ins with $3 credit",
+        },
+        {
+          title: "Age Verification",
+          description: "Verify attendee age for events",
+          price: "$0.50 per verification",
+          equivalent: "6 verifications with $3 credit",
+        },
+      ],
     },
   ];
 
   return (
     <section className={cn("w-full py-20", className)}>
-      <div className="mx-auto max-w-4xl px-4 text-center">
+      <div className="mx-auto max-w-6xl px-4 text-center">
         <Badge variant="outline" className="mb-4">
           PRICING
         </Badge>
@@ -83,81 +185,127 @@ const Pricing = ({ className }) => {
           Pay only for what you use. No monthly fees, no hidden costs.
         </p>
 
-        <div className="rounded-2xl border border-gray-50 bg-white p-8">
-          <div className="space-y-6">
-            {pricing.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col gap-2 border-b border-dashed border-gray-200 pb-6 last:border-none last:pb-0 sm:flex-row sm:justify-between"
-              >
-                <div className="text-left">
-                  <div className="font-semibold text-gray-900">
-                    {item.title}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    {item.description}
-                  </div>
-                </div>
-
-                <div className="text-left sm:text-right">
-                  <div className="font-bold">{item.price}</div>
-                  <div className="text-xs text-gray-500">{item.equivalent}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 rounded-xl border border-gray-100 bg-gray-50 p-6">
-            <h3 className="mb-4 font-semibold text-gray-900">
-              SDK Logins vs Managed Access Control
-            </h3>
-
-            <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
-              <div className="rounded-lg bg-white p-4">
-                <div className="mb-1 font-semibold text-gray-900">
-                  SDK Logins
-                </div>
-                <ul className="space-y-1 text-gray-600">
-                  <li>• Triggered programmatically via SDK</li>
-                  <li>• Designed for high-volume user authentication</li>
-                  <li>• Best for apps, websites, and embedded flows</li>
-                  <li>• Priced for scale</li>
-                </ul>
+        <div className="space-y-8">
+          {pricingCategories.map((category) => (
+            <div
+              key={category.id}
+              id={category.id}
+              className="rounded-2xl border border-gray-50 bg-white p-8"
+            >
+              <div className="bg-primary/30 mb-6 rounded-t-lg border-b border-gray-200 py-4">
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {category.category}
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">
+                  {category.description}
+                </p>
               </div>
 
-              <div className="rounded-lg bg-white p-4">
-                <div className="mb-1 font-semibold text-gray-900">
-                  Managed Access Control
-                </div>
-                <ul className="space-y-1 text-gray-600">
-                  <li>• Granted manually or by policy in the dashboard</li>
-                  <li>• Designed for physical and admin-controlled access</li>
-                  <li>• Best for offices, facilities, and secure zones</li>
-                  <li>• Priced for operational control</li>
-                </ul>
+              <div className="space-y-6">
+                {category.items.map((item) => (
+                  <div
+                    key={item.title}
+                    className={cn(
+                      "flex flex-col gap-2 border-b border-dashed border-gray-200 pb-6 last:border-none last:pb-0 sm:flex-row sm:justify-between",
+                    )}
+                  >
+                    <div className="text-left">
+                      <div className={cn("font-semibold")}>{item.title}</div>
+                      <div className="text-xs text-gray-500">
+                        {item.description}
+                      </div>
+                    </div>
+
+                    <div className="text-left sm:text-right">
+                      <div
+                        className={cn(
+                          "font-bold",
+                          item.highlight && "text-green-700",
+                        )}
+                      >
+                        {item.price}
+                      </div>
+                      <div
+                        className={cn(
+                          "text-xs",
+                          item.highlight ? "text-green-600" : "text-gray-500",
+                        )}
+                      >
+                        {item.equivalent}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          <div className="mt-8 rounded-xl bg-green-50 p-6 text-left">
-            <h3 className="mb-2 font-semibold text-green-900">
-              💡 What you get with $3 credit:
-            </h3>
-            <ul className="space-y-1 text-sm text-green-800">
-              <li>• Up to 300,000 SDK-based user logins</li>
-              <li>• 300 signups or verified email/phone claims</li>
-              <li>• 3,000 managed access grants</li>
-              <li>• 7 full KYC identity verifications</li>
-              <li>• Mix and match — credits apply across all services</li>
-            </ul>
+        <div className="mt-8 rounded-xl border border-gray-100 bg-gray-50 p-6">
+          <h3 className="mb-4 font-semibold text-gray-900">
+            Understanding Our Services
+          </h3>
+
+          <div className="grid grid-cols-1 gap-4 text-left text-sm sm:grid-cols-3">
+            <div className="rounded-lg bg-white p-4">
+              <div className="mb-1 font-semibold text-gray-900">
+                SDK Authentication
+              </div>
+              <ul className="space-y-1 text-gray-600">
+                <li>• Triggered programmatically via SDK</li>
+                <li>• Designed for high-volume user authentication</li>
+                <li>• Best for apps, websites, and embedded flows</li>
+                <li>• Priced for scale</li>
+              </ul>
+            </div>
+
+            <div className="rounded-lg bg-white p-4">
+              <div className="mb-1 font-semibold text-gray-900">
+                Managed Access Control
+              </div>
+              <ul className="space-y-1 text-gray-600">
+                <li>• Granted manually or by policy in the dashboard</li>
+                <li>• Designed for physical and admin-controlled access</li>
+                <li>• Best for offices, facilities, and secure zones</li>
+                <li>• Priced for operational control</li>
+              </ul>
+            </div>
+
+            <div className="rounded-lg bg-white p-4">
+              <div className="mb-1 font-semibold text-gray-900">
+                Event Registration
+              </div>
+              <ul className="space-y-1 text-gray-600">
+                <li>• Basic registration is completely free</li>
+                <li>• Optional verified identity capture</li>
+                <li>• Best for conferences, meetups, gatherings</li>
+                <li>• Flexible verification options</li>
+              </ul>
+            </div>
           </div>
+        </div>
+
+        <div className="mt-8 rounded-xl bg-green-50 p-6 text-left">
+          <h3 className="mb-2 font-semibold text-green-900">
+            💡 What you get with $3 credit:
+          </h3>
+          <ul className="space-y-1 text-sm text-green-800">
+            <li>• Up to 300,000 SDK user logins</li>
+            <li>• 300 signups (SDK or Access Control)</li>
+            <li>• 150 signups with verified email</li>
+            <li>• 27 signups with verified phone</li>
+            <li>• 3,000 access grants or 1,500 verified event registrations</li>
+            <li>• 6 full KYC identity verifications</li>
+            <li>• Unlimited basic event registrations (FREE)</li>
+            <li>• Mix and match — credits apply across all services</li>
+          </ul>
         </div>
       </div>
     </section>
   );
 };
 
-// Pricing Table Component
+// Pricing Plans
 const pricingPlans = [
   {
     name: "Free Tier",
@@ -190,42 +338,106 @@ const pricingPlans = [
 
 const comparisonFeatures = [
   {
-    category: "Authentication Operations",
+    category: "SDK Authentication",
     features: [
       {
-        name: "User Signups",
+        name: "Basic Signup",
         free: "$0.01 each",
         startup: "$0.01 each",
         enterprise: "Volume pricing",
       },
       {
-        name: "User Logins",
+        name: "Signup + Verified Email",
+        free: "$0.02 each",
+        startup: "$0.02 each",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "Signup + Verified Phone",
+        free: "$0.11 each",
+        startup: "$0.11 each",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "User Login",
         free: "$0.01/1k",
         startup: "$0.01/1k",
         enterprise: "Volume pricing",
       },
       {
-        name: "Verified emails",
+        name: "ID Verification & KYC",
+        free: "$0.50 each",
+        startup: "$0.50 each",
+        enterprise: "Volume pricing",
+      },
+    ],
+  },
+  {
+    category: "Managed Access Control",
+    features: [
+      {
+        name: "User Signup",
         free: "$0.01 each",
         startup: "$0.01 each",
         enterprise: "Volume pricing",
       },
       {
-        name: "Verified phone numbers",
-        free: "$0.10 each",
-        startup: "$0.10 each",
+        name: "Signup + Verified Email",
+        free: "$0.02 each",
+        startup: "$0.02 each",
         enterprise: "Volume pricing",
       },
       {
-        name: "ID Verification & Biometric KYC",
+        name: "Signup + Verified Phone",
+        free: "$0.11 each",
+        startup: "$0.11 each",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "Access Grant",
+        free: "$0.01/10",
+        startup: "$0.01/10",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "ID Verification & KYC",
         free: "$0.50 each",
         startup: "$0.50 each",
         enterprise: "Volume pricing",
       },
+    ],
+  },
+  {
+    category: "Event Registration",
+    features: [
       {
-        name: "Managed Access Control",
-        free: "$0.01/10",
-        startup: "$0.01/10",
+        name: "Basic Registration",
+        free: "FREE",
+        startup: "FREE",
+        enterprise: "FREE",
+      },
+      {
+        name: "Pelican Verified + Email",
+        free: "$0.02 each",
+        startup: "$0.02 each",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "Pelican Verified + Phone",
+        free: "$0.11 each",
+        startup: "$0.11 each",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "Attendee Check-in",
+        free: "$0.01/5",
+        startup: "$0.01/5",
+        enterprise: "Volume pricing",
+      },
+      {
+        name: "Age Verification",
+        free: "$0.50 each",
+        startup: "$0.50 each",
         enterprise: "Volume pricing",
       },
     ],
@@ -239,14 +451,12 @@ const comparisonFeatures = [
         startup: true,
         enterprise: true,
       },
-
       {
         name: "Dashboard Analytics",
         free: true,
         startup: true,
         enterprise: true,
       },
-
       {
         name: "Dedicated Support",
         free: null,
@@ -270,7 +480,6 @@ const comparisonFeatures = [
         startup: "$3.00",
         enterprise: "Custom",
       },
-
       {
         name: "Team Members",
         free: "Unlimited",
@@ -291,6 +500,9 @@ const renderFeatureValue = (value) => {
   if (value === null) {
     return <span className="text-gray-400">—</span>;
   }
+  if (value === "FREE") {
+    return <span className="font-bold text-green-600">{value}</span>;
+  }
   return (
     <div className="flex items-center gap-2">
       <Check className="h-4 w-4 text-green-600" />
@@ -306,49 +518,44 @@ const PlanHeaders = ({ selectedPlan, onPlanChange }) => {
     <div className="mb-8">
       {/* Mobile View */}
       <div className="md:hidden">
-        <Collapsible>
-          <div className="flex items-center justify-between border-b border-gray-200 py-4">
-            <CollapsibleTrigger className="flex items-center gap-2">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {pricingPlans[selectedPlan].name}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {pricingPlans[selectedPlan].price}
-                </p>
-              </div>
-              <ChevronsUpDown
-                className={`h-5 w-5 transition-transform ${isOpen ? "rotate-180" : ""}`}
-              />
-            </CollapsibleTrigger>
-            <Button>{pricingPlans[selectedPlan].button.text}</Button>
-          </div>
+        <div className="border-b border-gray-200 pb-4">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex w-full items-center justify-between"
+          >
+            <div className="text-left">
+              <h3 className="text-xl font-semibold text-gray-900">
+                {pricingPlans[selectedPlan].name}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {pricingPlans[selectedPlan].price}
+              </p>
+            </div>
+            <ChevronsUpDown
+              className={`h-5 w-5 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            />
+          </button>
           {isOpen && (
-            <CollapsibleContent className="flex flex-col space-y-2 p-2">
+            <div className="mt-4 flex flex-col space-y-2">
               {pricingPlans.map(
                 (plan, index) =>
                   index !== selectedPlan && (
-                    <Button
-                      size="lg"
-                      variant="secondary"
+                    <button
                       key={index}
                       onClick={() => {
                         onPlanChange(index);
                         setIsOpen(false);
                       }}
+                      className="rounded-lg bg-gray-100 p-4 text-left transition-colors hover:bg-gray-200"
                     >
-                      <div className="text-left">
-                        <div className="font-semibold">{plan.name}</div>
-                        <div className="text-xs text-gray-600">
-                          {plan.price}
-                        </div>
-                      </div>
-                    </Button>
+                      <div className="font-semibold">{plan.name}</div>
+                      <div className="text-xs text-gray-600">{plan.price}</div>
+                    </button>
                   ),
               )}
-            </CollapsibleContent>
+            </div>
           )}
-        </Collapsible>
+        </div>
       </div>
 
       {/* Desktop View */}
