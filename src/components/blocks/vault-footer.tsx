@@ -9,7 +9,7 @@ export function VaultFooter() {
   ];
 
   return (
-    <footer className="flex min-h-screen items-center justify-center">
+    <footer className="flex min-h-screen items-center justify-center bg-gray-50">
       <div className="flex flex-col items-center gap-14 py-28 lg:py-32">
         <div className="container mx-auto w-full space-y-3 text-center lg:max-w-4xl">
           <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">

@@ -5,6 +5,7 @@ import { IEvent } from "@/types/types";
 import Image from "next/image";
 import { Metadata } from "next";
 import { EventStructuredData } from "@/features/events/EventStructuredData";
+import { VaultFooter } from "@/components/blocks/vault-footer";
 
 async function getExperience(id: string) {
   const apiUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
@@ -121,7 +122,7 @@ export default async function Page({
       <EventStructuredData experience={experience} />
       <Navbar />
       <div className="h-16 lg:h-20" />
-      <div className="h-[500px] w-full overflow-hidden">
+      <div className="h-[50svw] w-full overflow-hidden lg:h-[500px]">
         <Image
           src={experience.flyer_key}
           alt={experience.name}
@@ -134,7 +135,7 @@ export default async function Page({
       <div className="mx-auto min-h-[80svh] w-full px-4 lg:px-10 2xl:max-w-5xl">
         <ExperiencePage experience={experience} />
       </div>
-      <Footer />
+      <VaultFooter />
     </div>
   );
 }
