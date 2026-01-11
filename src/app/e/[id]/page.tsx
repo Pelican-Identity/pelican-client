@@ -133,7 +133,7 @@ export default async function Page({
           priority // Load image with high priority for LCP
         />
       </div>
-      <div className="mx-auto min-h-screen w-full px-4 lg:px-10 2xl:max-w-5xl">
+      <div className="mx-auto min-h-[60svh] w-full px-4 lg:px-10 2xl:max-w-5xl">
         <ExperiencePage experience={experience} />
       </div>
       <Footer />
