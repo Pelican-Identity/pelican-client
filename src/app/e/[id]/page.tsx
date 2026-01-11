@@ -95,7 +95,7 @@ export async function generateMetadata({
   }
 }
 
-export const runtime = "edge";
+// Create a new component: components/StructuredData.tsx
 
 export default async function Page({
   params,
@@ -133,7 +133,7 @@ export default async function Page({
           priority // Load image with high priority for LCP
         />
       </div>
-      <div className="mx-auto min-h-[60svh] w-full px-4 lg:px-10 2xl:max-w-5xl">
+      <div className="mx-auto min-h-[80svh] w-full px-4 lg:px-10 2xl:max-w-5xl">
         <ExperiencePage experience={experience} />
       </div>
       <Footer />
