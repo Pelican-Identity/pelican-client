@@ -3,7 +3,12 @@
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -33,6 +38,8 @@ export function SideMenu() {
           <Bars3Icon className="size-6" />
         </Button>
       </DrawerTrigger>
+
+      <DrawerTitle className="sr-only hidden">Menu</DrawerTitle>
       <DrawerContent>
         <div className="mx-auto h-screen w-full max-w-4xl overflow-auto px-4">
           <div>

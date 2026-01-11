@@ -189,9 +189,9 @@ const Pricing = ({ className }) => {
           {pricingCategories.map((category) => (
             <div
               key={category.id}
-              id={category.id}
               className="rounded-2xl border border-gray-50 bg-white p-8"
             >
+              <div id={category.id} />
               <div className="bg-primary/30 mb-6 rounded-t-lg border-b border-gray-200 py-4">
                 <h3 className="text-2xl font-bold text-gray-900">
                   {category.category}
