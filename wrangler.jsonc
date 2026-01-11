@@ -22,7 +22,13 @@
       "service": "pelican-marketing",
     },
   ],
-
+  "r2_buckets": [
+    // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "pelican-marketing-cache",
+    },
+  ],
   "images": {
     // Enable image optimization
     // see https://opennext.js.org/cloudflare/howtos/image
