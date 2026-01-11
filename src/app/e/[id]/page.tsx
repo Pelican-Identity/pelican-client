@@ -95,7 +95,7 @@ export async function generateMetadata({
   }
 }
 
-// Create a new component: components/StructuredData.tsx
+export const runtime = "edge";
 
 export default async function Page({
   params,
