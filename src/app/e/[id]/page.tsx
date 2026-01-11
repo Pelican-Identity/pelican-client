@@ -14,7 +14,7 @@ async function getExperience(id: string) {
       "Content-Type": "application/json",
     },
     // Optional: Add caching strategy
-    next: { revalidate: 60 }, // Revalidate every hour
+    next: { revalidate: 10 * 60 }, // Revalidate every 10 minutes
   });
 
   if (!res.ok) {
@@ -47,7 +47,7 @@ export async function generateMetadata({
           {
             url: experience.flyer_key,
             width: 1200,
-            height: 630,
+            height: 600,
             alt: experience.name,
           },
         ],
