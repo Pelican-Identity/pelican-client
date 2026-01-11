@@ -1,5 +1,3 @@
-// app/e/[id]/page.tsx
-
 import { Footer } from "@/components/blocks/footer";
 import { Navbar } from "@/components/blocks/navbar";
 import ExperiencePage from "@/features/events/ExperiencePage";
