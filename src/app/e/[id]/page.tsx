@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 import { EventStructuredData } from "@/features/events/EventStructuredData";
 import { VaultFooter } from "@/components/blocks/vault-footer";
+import { PhotoIcon } from "@heroicons/react/24/solid";
 
 async function getExperience(id: string) {
   const apiUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
@@ -123,14 +124,25 @@ export default async function Page({
       <Navbar />
       <div className="h-16 lg:h-20" />
       <div className="h-[50svw] w-full overflow-hidden lg:h-[500px]">
-        <Image
-          src={experience.flyer_key}
-          alt={experience.name}
-          width={1000}
-          height={500}
-          className="h-full w-full object-cover"
-          priority // Load image with high priority for LCP
-        />
+        {experience.flyer_key ? (
+          <Image
+            src={experience.flyer_key}
+            alt={experience.name}
+            width={1000}
+            height={500}
+            className="h-full w-full object-cover"
+            priority // Load image with high priority for LCP
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-gray-100">
+            <div className="flex items-center gap-2">
+              <PhotoIcon className="h-16 w-16 text-gray-400" />
+              <p className="text-3xl font-bold text-gray-400">
+                {experience.name}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
       <div className="mx-auto min-h-[80svh] w-full px-4 lg:px-10 2xl:max-w-5xl">
         <ExperiencePage experience={experience} />
