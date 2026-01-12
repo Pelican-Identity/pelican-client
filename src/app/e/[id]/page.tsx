@@ -7,9 +7,9 @@ import { Metadata } from "next";
 import { EventStructuredData } from "@/features/events/EventStructuredData";
 import { VaultFooter } from "@/components/blocks/vault-footer";
 import { PhotoIcon } from "@heroicons/react/24/solid";
+import { apiUrl } from "@/lib/utils";
 
 async function getExperience(id: string) {
-  const apiUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${apiUrl}/v1/experiences/${id}/details`, {
     headers: {
       "Content-Type": "application/json",

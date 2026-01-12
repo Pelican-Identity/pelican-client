@@ -1,13 +1,23 @@
 "use client";
+
 import { Input } from "@/components/inputs/Input";
+import { Select } from "@/components/inputs/Select";
 import { AppleIcon, PlayStoreIcon } from "@/components/StoreIcons";
+import { cn, countryCodes } from "@/lib/utils";
 import { IEvent } from "@/types/types";
 import { PelicanAuth } from "@pelican-identity/react";
+import parsePhoneNumberFromString from "libphonenumber-js";
 
-import React from "react";
+import React, { useState } from "react";
 const shouldCollect = (value: boolean) => value === true;
 
-const RegisterForExperience = ({ experience }: { experience: IEvent }) => {
+const RegisterForExperience = ({
+  experience,
+  apiUrl,
+}: {
+  experience: IEvent;
+  apiUrl?: string;
+}) => {
   const { registration_policy } = experience;
   const { fields, type } = registration_policy;
 
@@ -18,6 +28,7 @@ const RegisterForExperience = ({ experience }: { experience: IEvent }) => {
     last_name: "",
     email: "",
     phone: "",
+    phoneCode: "+1",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +36,113 @@ const RegisterForExperience = ({ experience }: { experience: IEvent }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+
+  const validateForm = (payload: {
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone?: string;
+  }): { success: boolean; error: string | null } => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setError(null);
+    if (!payload?.email || !emailRegex.test(payload.email)) {
+      return { success: false, error: "Please enter a valid email" };
+    }
+
+    if (experience.registration_policy.fields.collect_phone && !payload.phone) {
+      return { success: false, error: "Please enter a valid phone number" };
+    }
+    if (experience.registration_policy.fields.collect_phone && payload.phone) {
+      const phoneNum = parsePhoneNumberFromString(
+        `${formData.phoneCode}${payload.phone}`,
+      );
+
+      if (!phoneNum || !phoneNum.isValid()) {
+        return { success: false, error: "Please enter a valid phone number" };
+      }
+    }
+
+    if (
+      experience.registration_policy.fields.collect_first_name &&
+      !payload.first_name
+    ) {
+      return { success: false, error: "Please enter a valid first name" };
+    }
+
+    if (
+      experience.registration_policy.fields.collect_last_name &&
+      !payload.last_name
+    ) {
+      return { success: false, error: "Please enter a valid last name" };
+    }
+
+    return { success: true, error: null };
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    const { success, error } = validateForm(formData);
+    if (!success) {
+      setError(error);
+      return;
+    }
+
+    handleRegistration({
+      email: formData.email,
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      phone: formData.phone,
+      type: "basic",
+      experience_id: experience.id,
+    });
+  };
+
+  const handleRegistration = async (payload: {
+    userid?: string;
+    email: string;
+    first_name?: string;
+    last_name?: string;
+    phone?: string;
+    type: "basic" | "pelican_verified";
+    experience_id: string;
+  }) => {
+    if (!apiUrl) {
+      setError("API URL not found");
+      return;
+    }
+    if (!experience.id) {
+      setError("Experience ID not found");
+      return;
+    }
+    if (loading) {
+      return;
+    }
+
+    setError(null);
+    setSuccessMsg(null);
+    setLoading(true);
+    const res = await fetch(
+      `${apiUrl}/v1/experiences/${experience.id}/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      },
+    );
+
+    if (!res.ok) {
+      setLoading(false);
+      const error = await res.text();
+      setError(error || "Failed to register for experience");
+      return;
+    }
+    setSuccessMsg("Successfully registered for experience");
+    setLoading(false);
   };
 
   if (new Date(experience.end_time) < new Date()) {
@@ -48,13 +163,54 @@ const RegisterForExperience = ({ experience }: { experience: IEvent }) => {
           Register for {experience.name}
         </h1>
 
+        {successMsg && (
+          <p className="rounded-xl bg-green-50 p-2 text-center text-sm font-semibold text-green-500">
+            {successMsg}
+          </p>
+        )}
+
+        {error && (
+          <p className="rounded-xl bg-red-50 p-2 text-center text-sm font-semibold text-red-500">
+            {error}
+          </p>
+        )}
         <div className="flex w-full flex-col items-center justify-center space-y-4">
           <PelicanAuth
             projectId={experience.project.api_key}
             publicKey={experience.business.public_key}
             authType="signup"
-            onSuccess={(e) => console.log(e)}
-            onError={(e) => console.log(e)}
+            onSuccess={(e) => {
+              if (!e.user_id) {
+                setError("Something went wrong");
+                return;
+              }
+
+              const { success, error } = validateForm({
+                email: e?.user_data?.email?.value,
+                first_name: e?.user_data?.first_name,
+                last_name: e?.user_data?.last_name,
+                phone: e?.user_data?.phone?.number,
+              });
+
+              if (!success) {
+                setError(error);
+                return;
+              }
+              const phoneNum = parsePhoneNumberFromString(
+                `${e?.user_data?.phone?.callingCode}${e?.user_data?.phone?.number.replace(/\s+/g, "")}`,
+              );
+
+              handleRegistration({
+                userid: e.user_id,
+                email: e?.user_data?.email?.value || "",
+                first_name: e?.user_data?.first_name || "",
+                last_name: e?.user_data?.last_name || "",
+                phone: phoneNum?.isValid() ? phoneNum.number : "",
+                type: "pelican_verified",
+                experience_id: experience.id,
+              });
+            }}
+            onError={(e) => setError(e?.message || "Something went wrong")}
             buttonComponent={
               <div className="flex w-full items-center justify-center gap-4 rounded-3xl bg-black px-3 py-2 font-semibold text-white">
                 <div className="flex items-center gap-2 rounded-2xl bg-[#262626] p-2">
@@ -87,6 +243,7 @@ const RegisterForExperience = ({ experience }: { experience: IEvent }) => {
               <p className="px-2 text-lg text-gray-500">or</p>
               <div className="h-px w-1/2 bg-gray-200" />
             </div>
+
             {shouldCollect(fields.collect_email) && (
               <div>
                 <Input
@@ -129,25 +286,56 @@ const RegisterForExperience = ({ experience }: { experience: IEvent }) => {
             )}
 
             {shouldCollect(fields.collect_phone) && (
-              <div>
-                <Input
-                  type="tel"
-                  name="phone"
-                  label="Phone number"
-                  required
-                  placeholder="Phone number"
-                  onChange={handleChange}
-                  inputContainerClassName="h-14"
-                />
+              <div className="grid-cols-7 gap-2 space-y-4 md:grid md:space-y-0">
+                <div className="col-span-2">
+                  <Select
+                    required
+                    searchable
+                    label="Country"
+                    placeholder={"+1"}
+                    value={formData.phoneCode || ""}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        phoneCode: e.target.value,
+                      })
+                    }
+                    options={countryCodes.map((c) => ({
+                      label: c.name,
+                      value: c.phoneCode,
+                    }))}
+                    inputContainerClassName="py-0 h-14"
+                  />
+                </div>
+                <div className="col-span-5">
+                  <Input
+                    required
+                    label="Phone number"
+                    placeholder="Enter phone"
+                    name="phone"
+                    type="text"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        phone: e.target.value,
+                      })
+                    }
+                    inputContainerClassName="py-1 h-14"
+                  />
+                </div>
               </div>
             )}
 
             {/* Primary Registration CTA */}
             <button
               type="submit"
-              className="h-16 w-full rounded-3xl bg-black px-4 py-3 font-medium text-white"
+              className={cn(
+                "my-2 h-12 w-full rounded-3xl bg-black px-4 py-3 font-medium text-white",
+                loading && "cursor-not-allowed opacity-50",
+              )}
             >
-              Register
+              {loading ? "Registering..." : "Register"}
             </button>
           </form>
         )}

@@ -1,4 +1,4 @@
-import { formatLongDayTime } from "@/lib/utils";
+import { apiUrl, formatLongDayTime } from "@/lib/utils";
 import { IEvent } from "@/types/types";
 
 import { CalendarDaysIcon, MapPinIcon } from "@heroicons/react/24/solid";
@@ -56,7 +56,7 @@ const ExperiencePage = ({ experience }: { experience: IEvent }) => {
         </div>
         <p className="text-sm">{experience.description}</p>
       </div>
-      <RegisterForExperience experience={experience} />
+      <RegisterForExperience experience={experience} apiUrl={apiUrl} />
     </div>
   );
 };

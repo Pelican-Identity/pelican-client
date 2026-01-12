@@ -160,9 +160,11 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             )}
           >
             {props.value ? (
-              options.find((o) => o.value === props.value)?.label
+              <span className="max-w-[90%] truncate">
+                {options.find((o) => o.value === props.value)?.label}
+              </span>
             ) : (
-              <span className="text-gray-400 dark:text-gray-400">
+              <span className="truncate text-gray-400 dark:text-gray-400">
                 {placeholder}
               </span>
             )}
@@ -203,9 +205,9 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               )}
 
               <div className="custom-scrollbar max-h-36 overflow-scroll">
-                {filteredOptions.map((option) => (
+                {filteredOptions.map((option, idx) => (
                   <li
-                    key={option.value}
+                    key={`${option.value}-${idx}`}
                     className={`rounded-2xl px-3 py-2 text-gray-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700 ${option.disabled ? "cursor-none opacity-40" : "cursor-pointer"}`}
                     onClick={() => !option.disabled && handleSelect(option)}
                   >

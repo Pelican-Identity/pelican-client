@@ -15,7 +15,7 @@ const onest = Onest({
 export const metadata: Metadata = {
   title: {
     default: "Pelican Identity",
-    template: "%s | Mainline",
+    template: "%s",
   },
   description: "The Identity layer for our physical and digital world.",
   keywords: ["Pelican", "Identity", "Authentication", "Access", "Verification"],
