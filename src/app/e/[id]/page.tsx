@@ -19,7 +19,8 @@ async function getExperience(id: string) {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch experience");
+    console.error("Failed to fetch experience");
+    return null;
   }
 
   return res.json();
@@ -35,7 +36,12 @@ export async function generateMetadata({
 
   try {
     const experience: IEvent = await getExperience(id);
-
+    if (!experience) {
+      return {
+        title: "Experience Not Found",
+        description: "The requested experience could not be found.",
+      };
+    }
     return {
       title: `${experience.name} - Pelican Identity`,
       description: experience.description,
@@ -105,7 +111,7 @@ export default async function Page({
   const { id } = await params;
   const experience: IEvent = await getExperience(id);
 
-  if (experience.status != "published") {
+  if (!experience || experience.status != "published") {
     return (
       <div>
         <Navbar />
