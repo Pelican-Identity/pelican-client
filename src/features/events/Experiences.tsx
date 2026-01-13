@@ -50,7 +50,6 @@ const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
       setLoading(false);
     }
   };
-  const [formKey, setFormKey] = useState(0);
 
   useEffect(() => {
     if (isInitialized.current) return;
@@ -110,7 +109,6 @@ const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
       <div className="border-b border-gray-50 bg-white pb-8 lg:pt-10">
         <div className="mx-auto max-w-7xl px-6">
           <form
-            key={formKey}
             onSubmit={(e) => {
               e.preventDefault();
               fetchExperiences(formState);
@@ -179,12 +177,14 @@ const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
               <button
                 type="button"
                 onClick={() => {
-                  setFormState((prev) => ({
-                    ...prev,
-                    time: "all",
-                    category: "",
-                  }));
-                  setFormKey((prev) => prev + 1);
+                  setFormState((prev) => {
+                    fetchExperiences({ ...prev, time: "all", category: "" });
+                    return {
+                      ...prev,
+                      time: "all",
+                      category: "",
+                    };
+                  });
                 }}
                 className="mr-4 cursor-pointer text-xs font-bold text-blue-400 hover:underline"
               >
