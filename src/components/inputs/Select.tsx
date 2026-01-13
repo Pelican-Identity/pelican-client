@@ -188,7 +188,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               {...dropdownAnimation}
               transition={{ duration: 0.15 }}
               className={cn(
-                "scrollbar-hide absolute z-50 w-fit rounded-2xl bg-white shadow-xl shadow-gray-100 dark:border dark:bg-black dark:shadow-black",
+                "scrollbar-hide absolute z-50 w-fit rounded-3xl bg-white px-1 py-2 shadow-[0_0_1.5rem_0_rgba(0,0,0,.1)]",
                 dropdownPosition,
               )}
             >

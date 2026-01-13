@@ -21,6 +21,7 @@ type Location = {
   required?: boolean;
 
   inputContainerClassName?: string;
+  apiUrl?: string;
 };
 
 const SearchLocation: React.FC<Location> = ({
@@ -31,6 +32,7 @@ const SearchLocation: React.FC<Location> = ({
   disabled = false,
   inputContainerClassName,
   required = false,
+  apiUrl,
 }: Location) => {
   const [value, setValue] = useState(location ?? "");
   const [suggestions, setSuggestions] = useState<PlaceSuggestions[]>([]);
@@ -46,12 +48,13 @@ const SearchLocation: React.FC<Location> = ({
       setSuggestions([]);
       return;
     }
+    if (!apiUrl) return console.error("API URL is required");
 
     setLoading(true);
 
     try {
       const res = await fetch(
-        `${process.env.API_URL}/v1/experiences/place-autocomplete?input=${input}`,
+        `${apiUrl}/v1/experiences/place-autocomplete?input=${input}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -83,10 +86,12 @@ const SearchLocation: React.FC<Location> = ({
   };
 
   const fetchPlaceDetail = async (placeId: string) => {
+    if (!apiUrl) return console.error("API URL is required");
+
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.API_URL}/v1/experiences/place-details?place_id=${placeId}`,
+        `${apiUrl}/v1/experiences/place-details?place_id=${placeId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -171,13 +176,13 @@ const SearchLocation: React.FC<Location> = ({
       />
 
       {loading ? (
-        <ul className="absolute left-0 z-10 mt-2 flex max-h-[200px] w-full list-none items-center justify-center overflow-y-auto rounded-lg bg-white p-8 drop-shadow-2xl dark:border dark:bg-black">
+        <ul className="absolute left-0 z-10 mt-2 flex max-h-[200px] w-full list-none items-center justify-center overflow-y-auto rounded-3xl bg-white p-8 shadow-[0_0_1.5rem_0_rgba(0,0,0,.1)] dark:border dark:bg-black">
           <p>Getting suggestions...</p>
         </ul>
       ) : (
         <>
           {showSuggestions && suggestions.length > 0 && (
-            <ul className="absolute left-0 z-10 mt-2 max-h-[200px] w-full list-none overflow-y-auto rounded-lg bg-white p-3 drop-shadow-2xl dark:border dark:bg-black">
+            <ul className="absolute left-0 z-10 mt-2 max-h-[200px] w-full list-none overflow-y-auto rounded-3xl bg-white p-3 shadow-[0_0_1.5rem_0_rgba(0,0,0,.1)]">
               {renderSuggestions()}
             </ul>
           )}

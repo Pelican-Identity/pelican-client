@@ -18,6 +18,7 @@ import UseCaseMenu from "../navbar/use-case-menu";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 
 const ITEMS = [
+  { label: "Experiences", href: "/experiences" },
   { label: "Developers", href: "/developer" },
   { label: "Business Pricing", href: "/business-pricing" },
   { label: "Privacy Policy", href: "/privacy" },
