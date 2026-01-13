@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { EVENT_CATEGORY_OPTIONS, EventCategory, IEvent } from "@/types/types";
 import SearchLocation from "@/components/inputs/SearchLocation";
 
@@ -9,7 +9,6 @@ import Link from "next/link";
 import { Select } from "@/components/inputs/Select";
 
 const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
-  // 1. Input State (Unchecked until Search is pressed)
   const [formState, setFormState] = useState<{
     latitude?: string;
     longitude?: string;
@@ -17,19 +16,23 @@ const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
     time: "all" | "upcoming" | "past";
   }>({ time: "all", category: "" });
 
-  // 2. Display/Result State
   const [experiences, setExperiences] = useState<IEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const fetchExperiences = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    if (!apiUrl) return;
+  // Track if we have initialized the location to prevent double-fetching
+  const isInitialized = useRef(false);
 
+  // Reusable fetch function
+  const fetchExperiences = async (overriddenState?: typeof formState) => {
+    if (!apiUrl) return;
     setLoading(true);
     setHasSearched(true);
 
-    const { latitude, longitude, category, time } = formState;
+    // Use overriddenState for the very first fetch to avoid stale closure issues
+    const stateToUse = overriddenState || formState;
+    const { latitude, longitude, category, time } = stateToUse;
+
     const searchParams = new URLSearchParams({ time });
     if (latitude) searchParams.append("latitude", latitude);
     if (longitude) searchParams.append("longitude", longitude);
@@ -47,19 +50,71 @@ const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
       setLoading(false);
     }
   };
-
   const [formKey, setFormKey] = useState(0);
-  useEffect(() => {
-    fetchExperiences();
-  }, [apiUrl, formKey]);
 
+  useEffect(() => {
+    if (isInitialized.current) return;
+
+    const initLocationAndFetch = async () => {
+      const cachedLat = localStorage.getItem("user_lat");
+      const cachedLng = localStorage.getItem("user_lng");
+
+      let initialState = { ...formState };
+
+      if (cachedLat && cachedLng) {
+        initialState = {
+          ...initialState,
+          latitude: cachedLat,
+          longitude: cachedLng,
+        };
+        setFormState(initialState);
+        fetchExperiences(initialState); // Fetch immediately with cache
+        isInitialized.current = true;
+      } else if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            const latStr = latitude.toString();
+            const lngStr = longitude.toString();
+
+            localStorage.setItem("user_lat", latStr);
+            localStorage.setItem("user_lng", lngStr);
+
+            const newState = {
+              ...initialState,
+              latitude: latStr,
+              longitude: lngStr,
+            };
+            setFormState(newState);
+            fetchExperiences(newState); // Fetch only after GPS returns
+            isInitialized.current = true;
+          },
+          () => {
+            // If denied/error, fetch anyway with default state
+            fetchExperiences(initialState);
+            isInitialized.current = true;
+          },
+          { timeout: 5000 },
+        );
+      } else {
+        fetchExperiences(initialState);
+        isInitialized.current = true;
+      }
+    };
+
+    initLocationAndFetch();
+  }, [apiUrl]);
   return (
     <div className="min-h-screen bg-white pb-20">
       {/* --- PREMIUM SEARCH HEADER --- */}
       <div className="border-b border-gray-50 bg-white pb-8 lg:pt-10">
         <div className="mx-auto max-w-7xl px-6">
           <form
-            onSubmit={fetchExperiences}
+            key={formKey}
+            onSubmit={(e) => {
+              e.preventDefault();
+              fetchExperiences(formState);
+            }}
             className="grid grid-cols-1 rounded-2xl border border-gray-50 bg-white p-2 shadow-[0_0_1.5rem_0_rgba(0,0,0,.1)] shadow-gray-100 md:grid-cols-12 md:items-center lg:gap-4 lg:rounded-4xl"
           >
             <div className="border-gray-100 px-4 py-2 md:col-span-5 md:border-r">
