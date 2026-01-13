@@ -115,8 +115,15 @@ export default function PelicanVaultPage() {
                 </Link>
               </Button>
               <Button variant={"outline"} className="rounded-full p-6">
-                <AndroidIcon />
-                Download for Android
+                <Link
+                  href={
+                    "https://play.google.com/store/apps/details?id=com.HeraculesDesignTechLtd.pelican"
+                  }
+                  target="_blank"
+                >
+                  <AndroidIcon />
+                  Download for Android
+                </Link>
               </Button>
             </motion.div>
           </div>

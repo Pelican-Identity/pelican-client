@@ -164,13 +164,13 @@ const RegisterForExperience = ({
         </h1>
 
         {successMsg && (
-          <p className="rounded-xl bg-green-50 p-2 text-center text-sm font-semibold text-green-500">
+          <p className="w-fit rounded-xl bg-green-50 p-2 text-center text-sm font-semibold text-green-500">
             {successMsg}
           </p>
         )}
 
         {error && (
-          <p className="rounded-xl bg-red-50 p-2 text-center text-sm font-semibold text-red-500">
+          <p className="w-fit rounded-xl bg-red-50 p-2 text-center text-sm font-semibold text-red-500">
             {error}
           </p>
         )}
