@@ -179,7 +179,11 @@ const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
               <button
                 type="button"
                 onClick={() => {
-                  setFormState({ time: "all", category: "" });
+                  setFormState((prev) => ({
+                    ...prev,
+                    time: "all",
+                    category: "",
+                  }));
                   setFormKey((prev) => prev + 1);
                 }}
                 className="mr-4 cursor-pointer text-xs font-bold text-blue-400 hover:underline"
