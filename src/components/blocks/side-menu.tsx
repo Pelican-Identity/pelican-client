@@ -19,7 +19,7 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 
 const ITEMS = [
   { label: "Developers", href: "/developer" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Business Pricing", href: "/business-pricing" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Use", href: "/terms" },
   { label: "FAQ", href: "/faq" },

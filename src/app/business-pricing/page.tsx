@@ -174,7 +174,7 @@ const Pricing = ({ className }) => {
     <section className={cn("w-full py-20", className)}>
       <div className="mx-auto max-w-6xl px-4 text-center">
         <Badge variant="outline" className="mb-4">
-          PRICING
+          FLEXIBLE BUSINESS PRICING
         </Badge>
 
         <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">

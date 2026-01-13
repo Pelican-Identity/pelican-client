@@ -1,15 +1,29 @@
 "use client";
-
 import { Input } from "@/components/inputs/Input";
 import { Select } from "@/components/inputs/Select";
 import { AppleIcon, PlayStoreIcon } from "@/components/StoreIcons";
 import { cn, countryCodes } from "@/lib/utils";
 import { IEvent } from "@/types/types";
-import { PelicanAuth } from "@pelican-identity/react";
+import { AuthType, IdentityResult, PelicanAuth } from "@pelican-identity/react";
 import parsePhoneNumberFromString from "libphonenumber-js";
-
+import { InfoIcon } from "lucide-react";
 import React, { useState } from "react";
 const shouldCollect = (value: boolean) => value === true;
+
+export const isAgeResticted = (
+  dob: Date | string | undefined,
+  ageRestriction: number,
+) => {
+  if (!dob) return false;
+  const today = new Date();
+  const birthDate = new Date(dob);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const month = today.getMonth() - birthDate.getMonth();
+  if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age < ageRestriction;
+};
 
 const RegisterForExperience = ({
   experience,
@@ -21,7 +35,9 @@ const RegisterForExperience = ({
   const { registration_policy } = experience;
   const { fields, type } = registration_policy;
 
-  const pelicanRequired = type === "pelican_verified";
+  const pelicanRequired =
+    type === "pelican_verified" ||
+    experience.registration_policy.age_restriction.enabled;
 
   const [formData, setFormData] = React.useState({
     first_name: "",
@@ -82,6 +98,11 @@ const RegisterForExperience = ({
     return { success: true, error: null };
   };
 
+  const [authType, setAuthType] = useState<AuthType>(
+    experience?.registration_policy?.age_restriction?.enabled
+      ? "id-verification"
+      : "signup",
+  );
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { success, error } = validateForm(formData);
@@ -141,8 +162,66 @@ const RegisterForExperience = ({
       setError(error || "Failed to register for experience");
       return;
     }
+
     setSuccessMsg("Successfully registered for experience");
     setLoading(false);
+  };
+
+  const handleAgeVerification = async (e: IdentityResult) => {
+    if (!e.user_id) {
+      setError("Something went wrong");
+      return;
+    }
+
+    const isAgeRestricted = isAgeResticted(
+      e.id_verification.date_of_birth,
+      experience.registration_policy?.age_restriction.minimum_age,
+    );
+    if (isAgeRestricted) {
+      setError(
+        `You must be at least ${experience.registration_policy?.age_restriction.minimum_age} years old to register for this event.`,
+      );
+      return;
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      first_name: e.id_verification?.first_name || prev.first_name,
+      last_name: e.id_verification?.last_name || prev.last_name,
+    }));
+
+    setSuccessMsg(
+      "Successfully verified age, You can now register for this event",
+    );
+    setAuthType("signup");
+  };
+
+  const handlePelicanRegistration = async (e: IdentityResult) => {
+    if (!e.user_id) {
+      setError("Something went wrong");
+      return;
+    }
+    const { success, error } = validateForm({
+      email: e?.user_data?.email?.value,
+      first_name: e?.user_data?.first_name,
+      last_name: e?.user_data?.last_name,
+      phone: e?.user_data?.phone?.number,
+    });
+
+    if (!success) {
+      setError(error);
+      return;
+    }
+
+    handleRegistration({
+      userid: e.user_id,
+      email: e?.user_data?.email?.value || "",
+      first_name: e?.user_data?.first_name || "",
+      last_name: e?.user_data?.last_name || "",
+      phone: `${e?.user_data?.phone?.callingCode}${e?.user_data?.phone?.number.replace(/\s+/g, "")}`,
+      type: "pelican_verified",
+      experience_id: experience.id,
+    });
   };
 
   if (new Date(experience.end_time) < new Date()) {
@@ -163,53 +242,30 @@ const RegisterForExperience = ({
           Register for {experience.name}
         </h1>
 
-        {successMsg && (
-          <p className="w-fit rounded-xl bg-green-50 p-2 text-center text-sm font-semibold text-green-500">
-            {successMsg}
-          </p>
-        )}
+        <div className="flex w-full flex-col items-center justify-center space-y-4">
+          {successMsg && (
+            <p className="w-fit rounded-xl bg-green-50 p-2 px-6 text-center text-sm font-semibold text-green-500 md:px-6">
+              {successMsg}
+            </p>
+          )}
 
-        {error && (
-          <p className="w-fit rounded-xl bg-red-50 p-2 text-center text-sm font-semibold text-red-500">
-            {error}
-          </p>
-        )}
+          {error && (
+            <p className="w-fit rounded-xl bg-red-50 p-2 text-center text-sm font-semibold text-red-500 md:px-6">
+              {error}
+            </p>
+          )}
+        </div>
         <div className="flex w-full flex-col items-center justify-center space-y-4">
           <PelicanAuth
+            key={authType}
             projectId={experience.project.api_key}
             publicKey={experience.business.public_key}
-            authType="signup"
-            onSuccess={(e) => {
-              if (!e.user_id) {
-                setError("Something went wrong");
-                return;
-              }
-
-              const { success, error } = validateForm({
-                email: e?.user_data?.email?.value,
-                first_name: e?.user_data?.first_name,
-                last_name: e?.user_data?.last_name,
-                phone: e?.user_data?.phone?.number,
-              });
-
-              if (!success) {
-                setError(error);
-                return;
-              }
-              const phoneNum = parsePhoneNumberFromString(
-                `${e?.user_data?.phone?.callingCode}${e?.user_data?.phone?.number.replace(/\s+/g, "")}`,
-              );
-
-              handleRegistration({
-                userid: e.user_id,
-                email: e?.user_data?.email?.value || "",
-                first_name: e?.user_data?.first_name || "",
-                last_name: e?.user_data?.last_name || "",
-                phone: phoneNum?.isValid() ? phoneNum.number : "",
-                type: "pelican_verified",
-                experience_id: experience.id,
-              });
-            }}
+            authType={authType}
+            onSuccess={
+              authType === "id-verification"
+                ? handleAgeVerification
+                : handlePelicanRegistration
+            }
             onError={(e) => setError(e?.message || "Something went wrong")}
             buttonComponent={
               <div className="flex w-full items-center justify-center gap-4 rounded-3xl bg-black px-3 py-2 font-semibold text-white">
@@ -228,14 +284,30 @@ const RegisterForExperience = ({
                     />
                   </svg>
                 </div>
-                <p>Register with Pelican</p>
+                <p>
+                  {authType === "id-verification"
+                    ? "Verify Age to continue"
+                    : "Register with Pelican"}
+                </p>
               </div>
             }
           />
         </div>
 
-        {/* Registration Form */}
+        {experience.registration_policy.age_restriction.enabled && (
+          <div className="flex flex-col items-center justify-center space-y-2">
+            <div className="flex flex-col items-center justify-center space-y-2 md:max-w-[70%]">
+              <div className="flex items-center gap-2 rounded-2xl bg-amber-100 px-2 py-1.5">
+                <InfoIcon className="h-4 w-4 text-amber-500" />
+                <p className="text-center text-xs font-bold">
+                  This event is age restricted
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
+        {/* Registration Form */}
         {!pelicanRequired && (
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex items-center justify-center gap-2">
@@ -251,7 +323,11 @@ const RegisterForExperience = ({
                   name="email"
                   label="Email"
                   required
-                  placeholder="Email"
+                  placeholder={
+                    experience.registration_policy.age_restriction.enabled
+                      ? "Enter a valid email to continue"
+                      : "Email"
+                  }
                   inputContainerClassName="h-14"
                   onChange={handleChange}
                 />
@@ -339,7 +415,6 @@ const RegisterForExperience = ({
             </button>
           </form>
         )}
-
         {/* Pelican Speed Nudge */}
 
         <div className="flex w-full flex-col items-center justify-center space-y-4">
