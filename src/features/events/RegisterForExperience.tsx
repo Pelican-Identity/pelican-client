@@ -61,6 +61,7 @@ const RegisterForExperience = ({
     last_name?: string;
     email?: string;
     phone?: string;
+    phoneCode?: string;
   }): { success: boolean; error: string | null } => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setError(null);
@@ -73,7 +74,7 @@ const RegisterForExperience = ({
     }
     if (experience.registration_policy.fields.collect_phone && payload.phone) {
       const phoneNum = parsePhoneNumberFromString(
-        `${formData.phoneCode}${payload.phone}`,
+        `${payload.phoneCode}${payload.phone}`,
       );
 
       if (!phoneNum || !phoneNum.isValid()) {
@@ -206,6 +207,7 @@ const RegisterForExperience = ({
       first_name: e?.user_data?.first_name,
       last_name: e?.user_data?.last_name,
       phone: e?.user_data?.phone?.number,
+      phoneCode: e?.user_data?.phone?.callingCode,
     });
 
     if (!success) {
@@ -255,6 +257,18 @@ const RegisterForExperience = ({
             </p>
           )}
         </div>
+        {experience.registration_policy.age_restriction.enabled && (
+          <div className="flex flex-col items-center justify-center space-y-2">
+            <div className="flex flex-col items-center justify-center space-y-2 md:max-w-[70%]">
+              <div className="flex items-center gap-2 rounded-2xl bg-amber-100 px-2 py-1.5">
+                <InfoIcon className="h-4 w-4 text-amber-500" />
+                <p className="text-center text-xs font-bold">
+                  This event is age restricted
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="flex w-full flex-col items-center justify-center space-y-4">
           <PelicanAuth
             key={authType}
@@ -268,7 +282,7 @@ const RegisterForExperience = ({
             }
             onError={(e) => setError(e?.message || "Something went wrong")}
             buttonComponent={
-              <div className="flex w-full items-center justify-center gap-4 rounded-3xl bg-black px-3 py-2 font-semibold text-white">
+              <div className="flex w-full items-center justify-center gap-2 rounded-3xl bg-black px-3 py-2 font-semibold text-white">
                 <div className="flex items-center gap-2 rounded-2xl bg-[#262626] p-2">
                   <svg
                     width={24}
@@ -286,26 +300,13 @@ const RegisterForExperience = ({
                 </div>
                 <p>
                   {authType === "id-verification"
-                    ? "Verify Age to continue"
+                    ? "Verify age to continue"
                     : "Register with Pelican"}
                 </p>
               </div>
             }
           />
         </div>
-
-        {experience.registration_policy.age_restriction.enabled && (
-          <div className="flex flex-col items-center justify-center space-y-2">
-            <div className="flex flex-col items-center justify-center space-y-2 md:max-w-[70%]">
-              <div className="flex items-center gap-2 rounded-2xl bg-amber-100 px-2 py-1.5">
-                <InfoIcon className="h-4 w-4 text-amber-500" />
-                <p className="text-center text-xs font-bold">
-                  This event is age restricted
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Registration Form */}
         {!pelicanRequired && (
