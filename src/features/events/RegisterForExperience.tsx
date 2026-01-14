@@ -168,6 +168,7 @@ const RegisterForExperience = ({
     setLoading(false);
   };
 
+  const [ageVerified, setAgeVerified] = useState(false);
   const handleAgeVerification = async (e: IdentityResult) => {
     if (!e.user_id) {
       setError("Something went wrong");
@@ -191,9 +192,7 @@ const RegisterForExperience = ({
       last_name: e.id_verification?.last_name || prev.last_name,
     }));
 
-    setSuccessMsg(
-      "Successfully verified age, You can now register for this event",
-    );
+    setAgeVerified(true);
     setAuthType("signup");
   };
 
@@ -257,18 +256,35 @@ const RegisterForExperience = ({
             </p>
           )}
         </div>
-        {experience.registration_policy.age_restriction.enabled && (
-          <div className="flex flex-col items-center justify-center space-y-2">
-            <div className="flex flex-col items-center justify-center space-y-2 md:max-w-[70%]">
-              <div className="flex items-center gap-2 rounded-2xl bg-amber-100 px-2 py-1.5">
-                <InfoIcon className="h-4 w-4 text-amber-500" />
-                <p className="text-center text-xs font-bold">
-                  This event is age restricted
+        {experience.registration_policy.age_restriction.enabled &&
+          !ageVerified && (
+            <div className="flex flex-col items-center justify-center space-y-2">
+              <div className="flex flex-col items-center justify-center space-y-2 md:max-w-[70%]">
+                <div className="flex items-center gap-2 rounded-2xl bg-amber-100 px-2 py-1.5">
+                  <InfoIcon className="h-4 w-4 text-amber-500" />
+                  <p className="text-center text-xs font-bold">
+                    This event is age restricted (
+                    {experience.registration_policy.age_restriction.minimum_age}
+                    +)
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        {ageVerified &&
+          experience.registration_policy.age_restriction.enabled && (
+            <div className="flex w-full flex-col items-center justify-center space-y-4">
+              <div className="flex max-w-[50%] flex-col items-center justify-center rounded-3xl bg-blue-50 p-3 text-center text-sm md:px-6">
+                <p className="text-sm font-bold text-blue-500 uppercase">
+                  Age verified
+                </p>
+                <p className="text-xs font-medium">
+                  You’re eligible for this event. Click the register button
+                  again to continue.
                 </p>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
         {(pelicanRequired || type === "hybrid") && (
           <div className="flex w-full flex-col items-center justify-center space-y-4">
@@ -435,7 +451,7 @@ const RegisterForExperience = ({
                 href="https://apps.apple.com/us/app/pelican-vault/id6755097751"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-3xl bg-black px-4 py-2 text-white"
+                className="flex h-10 items-center gap-2 rounded-3xl bg-black px-4 py-2 text-white"
               >
                 <AppleIcon />
                 <p className="text-xs font-medium">App Store</p>
@@ -445,7 +461,7 @@ const RegisterForExperience = ({
                 href="https://play.google.com/store/apps/details?id=com.HeraculesDesignTechLtd.pelican"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-3xl bg-black px-4 py-2 text-white"
+                className="flex h-10 items-center gap-2 rounded-3xl bg-black px-4 py-2 text-white"
               >
                 <PlayStoreIcon />
                 <p className="text-xs font-medium">Google Play</p>

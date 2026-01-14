@@ -14,8 +14,6 @@ async function getExperience(id: string) {
     headers: {
       "Content-Type": "application/json",
     },
-    // Optional: Add caching strategy
-    next: { revalidate: 10 * 60 }, // Revalidate every 10 minutes
   });
 
   if (!res.ok) {
