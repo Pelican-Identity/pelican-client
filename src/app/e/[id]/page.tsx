@@ -127,7 +127,7 @@ export default async function Page({
       <EventStructuredData experience={experience} />
       <Navbar />
       <div className="h-16 lg:h-20" />
-      <div className="h-[50svw] w-full overflow-hidden lg:h-[500px]">
+      <div className="relative h-[50svw] w-full overflow-hidden lg:h-[500px]">
         {experience.flyer_key ? (
           <Image
             src={experience.flyer_key}
@@ -147,6 +147,9 @@ export default async function Page({
             </div>
           </div>
         )}
+        <div className="absolute top-4 right-4 rounded-full border border-white/30 bg-white/20 px-6 py-3 text-sm font-bold text-white backdrop-blur-md">
+          {experience.category}
+        </div>
       </div>
       <div className="mx-auto min-h-[80svh] w-full px-4 lg:px-10 2xl:max-w-5xl">
         <ExperiencePage experience={experience} />

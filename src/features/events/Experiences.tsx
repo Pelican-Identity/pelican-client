@@ -4,7 +4,7 @@ import { EVENT_CATEGORY_OPTIONS, EventCategory, IEvent } from "@/types/types";
 import SearchLocation from "@/components/inputs/SearchLocation";
 
 import { MapPin, Calendar, Search, Loader2, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getEventStatus } from "@/lib/utils";
 import Link from "next/link";
 import { Select } from "@/components/inputs/Select";
 
@@ -230,46 +230,6 @@ const Experiences = ({ apiUrl }: { apiUrl?: string }) => {
 };
 
 /* --- SUB-COMPONENTS --- */
-
-const getEventStatus = (startTime: string, endTime: string) => {
-  const now = new Date();
-  const start = new Date(startTime);
-  const end = new Date(endTime);
-
-  // Helper for Relative Time (e.g., "in 2 days" or "3 hours ago")
-  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
-
-  const getRelativeString = (targetDate: Date) => {
-    const diffInMs = targetDate.getTime() - now.getTime();
-    const diffInDays = Math.round(diffInMs / (1000 * 60 * 60 * 24));
-    const diffInHours = Math.round(diffInMs / (1000 * 60 * 60));
-
-    if (Math.abs(diffInDays) >= 1) return rtf.format(diffInDays, "day");
-    return rtf.format(diffInHours, "hour");
-  };
-
-  // 1. Past State
-  if (now > end) {
-    return {
-      label: `Past • ${getRelativeString(end)}`,
-      styles: "bg-gray-100 text-gray-600",
-    };
-  }
-
-  // 2. Live State
-  if (now >= start && now <= end) {
-    return {
-      label: "Live Now",
-      styles: "bg-primary text-black animate-pulse",
-    };
-  }
-
-  // 3. Upcoming State
-  return {
-    label: `Upcoming • ${getRelativeString(start)}`,
-    styles: "bg-blue-100 text-blue-500",
-  };
-};
 
 const ExperienceCard = ({ event }: { event: IEvent }) => {
   const start = new Date(event.start_time);
