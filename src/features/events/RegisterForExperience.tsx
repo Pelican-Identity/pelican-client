@@ -128,7 +128,7 @@ const RegisterForExperience = ({
     first_name?: string;
     last_name?: string;
     phone?: string;
-    type: "basic" | "pelican_verified";
+    type: "basic" | "pelican_verified" | "hybrid";
     experience_id: string;
   }) => {
     if (!apiUrl) {
