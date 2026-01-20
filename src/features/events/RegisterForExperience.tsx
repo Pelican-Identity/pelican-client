@@ -123,7 +123,7 @@ const RegisterForExperience = ({
   };
 
   const handleRegistration = async (payload: {
-    userid?: string;
+    user_id?: string;
     email: string;
     first_name?: string;
     last_name?: string;
@@ -215,7 +215,7 @@ const RegisterForExperience = ({
     }
 
     handleRegistration({
-      userid: e.user_id,
+      user_id: e.user_id,
       email: e?.user_data?.email?.value || "",
       first_name: e?.user_data?.first_name || "",
       last_name: e?.user_data?.last_name || "",

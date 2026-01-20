@@ -85,7 +85,7 @@ const DemoScreen = ({
                   >
                     Onboarding
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => {
                       setAuthType("id-verification");
                       clearResults();
@@ -97,7 +97,7 @@ const DemoScreen = ({
                     }`}
                   >
                     ID Verification
-                  </button>
+                  </button> */}
                 </div>
               </div>
 
