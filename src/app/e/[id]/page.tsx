@@ -10,15 +10,11 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import { apiUrl } from "@/lib/utils";
 
 async function getExperience(id: string) {
-  console.log(apiUrl);
-  console.log("running");
-
   const res = await fetch(`${apiUrl}/v1/experiences/${id}/details`, {
     headers: {
       "Content-Type": "application/json",
     },
   });
-  console.log(res.json());
 
   if (!res.ok) {
     console.error("Failed to fetch experience");
@@ -118,6 +114,8 @@ export default async function Page({
       <div>
         <Navbar />
         <div className="h-16 lg:h-20" />
+
+        {JSON.stringify(experience)}
         <div className="flex h-[500px] w-full items-center justify-center">
           Event not found
         </div>
