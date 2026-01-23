@@ -15,9 +15,6 @@ async function getExperience(id: string) {
   const res = await fetch(`${apiUrl}/v1/experiences/${id}/details`, {
     headers: {
       "Content-Type": "application/json",
-      "x-vercel-token":
-        process.env.CLOUDFLARE_BYPASS_SECRET ||
-        "uTHi3ZAbHqwwWmLTAM9mzznuPTaxnqczpz06vxLh4efaXx8gE6vG2wuvghb",
     },
     cache: "no-store",
   });
