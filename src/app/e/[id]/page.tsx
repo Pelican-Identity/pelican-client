@@ -20,7 +20,7 @@ async function getExperience(id: string) {
   });
 
   if (!res.ok) {
-    console.error("Failed to fetch experience");
+    console.error(`API Error: ${res.status} for ID: ${id}`);
     return null;
   }
 
