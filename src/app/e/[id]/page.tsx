@@ -9,11 +9,14 @@ import { VaultFooter } from "@/components/blocks/vault-footer";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import { apiUrl } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 async function getExperience(id: string) {
   const res = await fetch(`${apiUrl}/v1/experiences/${id}/details`, {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -114,8 +117,6 @@ export default async function Page({
       <div>
         <Navbar />
         <div className="h-16 lg:h-20" />
-
-        {JSON.stringify(experience)}
         <div className="flex h-[500px] w-full items-center justify-center">
           Event not found
         </div>
