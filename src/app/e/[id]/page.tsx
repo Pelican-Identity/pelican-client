@@ -10,11 +10,15 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 import { apiUrl } from "@/lib/utils";
 
 async function getExperience(id: string) {
+  console.log(apiUrl);
+  console.log("running");
+
   const res = await fetch(`${apiUrl}/v1/experiences/${id}/details`, {
     headers: {
       "Content-Type": "application/json",
     },
   });
+  console.log(res.json());
 
   if (!res.ok) {
     console.error("Failed to fetch experience");
@@ -109,7 +113,7 @@ export default async function Page({
   const { id } = await params;
   const experience: IEvent = await getExperience(id);
 
-  if (!experience || experience.status != "published") {
+  if (!experience || experience.status !== "published") {
     return (
       <div>
         <Navbar />
