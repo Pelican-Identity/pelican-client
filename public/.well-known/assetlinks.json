@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.HeraculesDesignTechLtd.pelican",
+      "sha256_cert_fingerprints": [
+        "D2:0D:87:FC:5F:62:59:81:2B:F7:37:B9:5C:5C:77:13:CD:F9:32:E2:C6:FE:71:C7:CB:6D:C8:B4:BE:B8:7D:F4"
+      ]
+    }
+  }
+]

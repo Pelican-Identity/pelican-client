@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "37QVBW46VP.com.HeraculesDesignTechLtd.pelican",
+        "paths": [
+          "/auth/sdk*",
+          "/auth/deep-link*"
+        ],
+        "comment": "Only links under /auth/sdk or /auth/deep-link will trigger the app"
+      }
+    ]
+  }
+}
