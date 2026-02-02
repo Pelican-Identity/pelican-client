@@ -24,8 +24,8 @@ importers:
         specifier: ^15.5.9
         version: 15.5.9(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.2.8)(react@19.2.3))
       '@pelican-identity/react':
-        specifier: ^2.0.20
-        version: 2.0.20(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.22
+        version: 2.0.22(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-accordion':
         specifier: ^1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -828,11 +828,11 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@pelican-identity/auth-core@1.2.18':
-    resolution: {integrity: sha512-VmPgt5sxupPsP897CTe7A/gzaAGbg+N0pzd4RQHfnttBQmbbHigUqZgnrfXCMgBxIhS6aAyYpYF/h7KiDqENQQ==}
+  '@pelican-identity/auth-core@1.2.20':
+    resolution: {integrity: sha512-nkL2LllBDWW7OYa3jHoQ7CkcAL1gznMWSKsm08s1yO1c2oAhBALNAEp19G90400ogbXHTsOoSb9ZdfIa4RmGQg==}
 
-  '@pelican-identity/react@2.0.20':
-    resolution: {integrity: sha512-Ga87A2I0mq5QvXVrCpehb9AxlkM9WM+js3HYuwtO/WKWRRCQOKLFnZEKox/3syiZbZSqMDxCXrJSFJC7rZWVYA==}
+  '@pelican-identity/react@2.0.22':
+    resolution: {integrity: sha512-VjrJcAfYc8gNjRL8n99/UPKknVhaNPhnpzVFZA1F3Aw6VdyTEAX0wU4ZrpccKoCs/cut8fBwest2yeHuTEeqrQ==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -4023,15 +4023,15 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@pelican-identity/auth-core@1.2.18':
+  '@pelican-identity/auth-core@1.2.20':
     dependencies:
       qrcode: 1.5.4
       tweetnacl: 1.0.3
       tweetnacl-util: 0.15.1
 
-  '@pelican-identity/react@2.0.20(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@pelican-identity/react@2.0.22(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@pelican-identity/auth-core': 1.2.18
+      '@pelican-identity/auth-core': 1.2.20
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
