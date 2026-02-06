@@ -24,8 +24,8 @@ importers:
         specifier: ^15.5.9
         version: 15.5.9(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.2.8)(react@19.2.3))
       '@pelican-identity/react':
-        specifier: ^2.0.23
-        version: 2.0.23(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^2.0.24
+        version: 2.0.24(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@radix-ui/react-accordion':
         specifier: ^1.2.12
         version: 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -831,8 +831,8 @@ packages:
   '@pelican-identity/auth-core@1.2.21':
     resolution: {integrity: sha512-CpfHzWCTjLyZIVmypyO2+son5HtI5hUrpJikXeBaGxq6HjHYm0pqVJpbcIH23bwprwCitDXCrGJDcmQUbFczsw==}
 
-  '@pelican-identity/react@2.0.23':
-    resolution: {integrity: sha512-8IE5qo3Ik4KggMU5vb6kA6E5oZLMWf/vTBxAjUl5wScsduh5SZtJRCh+5ca3pK8SW7q7kIQQsKEADQ5LsGjc2A==}
+  '@pelican-identity/react@2.0.24':
+    resolution: {integrity: sha512-IPpAdberqhi33GK9+z+4jqHtBlEuHAqV/WRXB1CCW4TMyYCcP5FttQKlj4E0HBMpanPGN992WRVVZE4WVhi+2A==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -4029,7 +4029,7 @@ snapshots:
       tweetnacl: 1.0.3
       tweetnacl-util: 0.15.1
 
-  '@pelican-identity/react@2.0.23(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@pelican-identity/react@2.0.24(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@pelican-identity/auth-core': 1.2.21
       react: 19.2.3
