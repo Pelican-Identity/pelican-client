@@ -5,18 +5,30 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatLongDayTime = (input: string | Date) => {
-  const d = new Date(input);
-
-  return d.toLocaleString("en-US", {
-    weekday: "short", // Tue
-    month: "short", // May
-    year: "numeric", // 2026
-    day: "numeric", // 6
-    hour: "numeric", // 12
-    minute: "2-digit", // 30
-    hour12: true, // AM / PM
+// Format date and time helpers - these already handle viewer's timezone!
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr); // Automatically converts to viewer's local time
+  return date.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
   });
+};
+
+const formatTime = (dateStr: string) => {
+  const date = new Date(dateStr); // Automatically converts to viewer's local time
+  return date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+};
+
+export const formatLongDayTime = (input: string) => {
+  const date = formatDate(input);
+  const time = formatTime(input);
+
+  return `${date} at ${time}`;
 };
 
 export function debounce<T extends (...args: Parameters<T>) => void>(

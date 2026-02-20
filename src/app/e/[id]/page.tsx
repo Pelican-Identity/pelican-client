@@ -103,7 +103,12 @@ export async function generateMetadata({
 }
 
 // Create a new component: components/StructuredData.tsx
-
+const formatForDatetimeLocal = (isoString: string): string => {
+  const date = new Date(isoString);
+  const offset = date.getTimezoneOffset() * 60000;
+  const localDate = new Date(date.getTime() - offset);
+  return localDate.toISOString().slice(0, 16); // "YYYY-MM-DDTHH:mm"
+};
 export default async function Page({
   params,
 }: {
@@ -111,7 +116,6 @@ export default async function Page({
 }) {
   const { id } = await params;
   const experience: IEvent = await getExperience(id);
-
   if (!experience || experience.status !== "published") {
     return (
       <div>
@@ -155,7 +159,13 @@ export default async function Page({
         </div>
       </div>
       <div className="mx-auto min-h-[80svh] w-full px-4 lg:px-10 2xl:max-w-5xl">
-        <ExperiencePage experience={experience} />
+        <ExperiencePage
+          experience={{
+            ...experience,
+            start_time: formatForDatetimeLocal(experience.start_time),
+            end_time: formatForDatetimeLocal(experience.end_time),
+          }}
+        />
       </div>
       <VaultFooter />
     </div>
