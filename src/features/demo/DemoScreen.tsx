@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { AuthType, PelicanAuth } from "@pelican-identity/react";
 import { Navbar } from "@/components/blocks/navbar";
+import { ForDevelopers } from "@/components/blocks/for-developers";
 
 const DemoScreen = ({
   public_key,
@@ -238,6 +239,7 @@ const DemoScreen = ({
               )}
             </div>
           </div>
+          <ForDevelopers />
         </div>
       </div>
     </div>
