@@ -113,7 +113,7 @@ const RegisterForExperience = ({
     }
 
     handleRegistration({
-      user_id: "",
+      user_id: null,
       email: formData.email,
       first_name: formData.first_name,
       last_name: formData.last_name,
@@ -124,7 +124,7 @@ const RegisterForExperience = ({
   };
 
   const handleRegistration = async (payload: {
-    user_id?: string;
+    user_id: string | null;
     email: string;
     first_name?: string;
     last_name?: string;
