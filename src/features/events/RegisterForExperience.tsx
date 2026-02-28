@@ -113,6 +113,7 @@ const RegisterForExperience = ({
     }
 
     handleRegistration({
+      user_id: "",
       email: formData.email,
       first_name: formData.first_name,
       last_name: formData.last_name,
@@ -201,6 +202,7 @@ const RegisterForExperience = ({
       setError("Something went wrong");
       return;
     }
+
     const { success, error } = validateForm({
       email: e?.user_data?.email?.value,
       first_name: e?.user_data?.first_name,
