@@ -10,6 +10,7 @@ import {
   Globe,
   CheckCircle,
   Shield,
+  Globe2,
 } from "lucide-react";
 import { Navbar } from "@/components/blocks/navbar";
 
@@ -128,6 +129,18 @@ export default function PelicanVaultPage() {
                   >
                     <PlayStoreIcon fill="black" />
                     Get Android app
+                  </Link>
+                </Button>
+                <Button
+                  className="bg-primary rounded-full p-6 text-black"
+                  asChild
+                >
+                  <Link
+                    href={"https://vault.pelicanidentity.com"}
+                    target="_blank"
+                  >
+                    <Globe2 />
+                    Try on the Web
                   </Link>
                 </Button>
               </motion.div>

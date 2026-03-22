@@ -23,7 +23,7 @@ export function VaultFooter() {
 
           <div className="flex items-center justify-center gap-4">
             <Button size="lg" className="mt-4" variant={"success"}>
-              Get Pelican Vault
+              <Link href={"/pelican-vault"}>Get Started</Link>
             </Button>
           </div>
         </div>

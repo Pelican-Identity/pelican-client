@@ -218,6 +218,32 @@ const Home = () => {
             </p>
           </div>
         </div>
+        <div className="bg-primary/20 col-span-1 flex min-h-screen items-center justify-center">
+          <div className="grid gap-4 px-8 py-20 lg:grid-cols-3">
+            <div>
+              <h2 className="text-2xl font-light">A Future We Can Trust</h2>
+            </div>
+            <div className="col-span-2 w-full space-y-6">
+              <h3 className="text-6xl text-wrap">One identity.</h3>
+              <p>
+                Owned by you. <br /> Recognized by the world.
+              </p>
+
+              <p>
+                Pelican isn’t just an app. <br />
+                It’s a foundation — for people, for institutions, for everything
+                our world is becoming.
+              </p>
+              <Button
+                asChild
+                variant={"success"}
+                className="rounded-full bg-black p-6 text-white hover:bg-black/80"
+              >
+                <Link href="/pelican-vault">Create your Identity</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
 
         {/*  */}
         <div className="col-span-1 grid min-h-screen gap-4 px-8 py-20 lg:grid-cols-3">
@@ -315,33 +341,6 @@ const Home = () => {
         </div>
 
         {/*  */}
-
-        <div className="bg-primary/20 col-span-1 flex min-h-screen items-center justify-center">
-          <div className="grid gap-4 px-8 py-20 lg:grid-cols-3">
-            <div>
-              <h2 className="text-2xl font-light">A Future We Can Trust</h2>
-            </div>
-            <div className="col-span-2 w-full space-y-6">
-              <h3 className="text-6xl text-wrap">One identity.</h3>
-              <p>
-                Owned by you. <br /> Recognized by the world.
-              </p>
-
-              <p>
-                Pelican isn’t just an app. <br />
-                It’s a foundation — for people, for institutions, for everything
-                our world is becoming.
-              </p>
-              <Button
-                asChild
-                variant={"success"}
-                className="rounded-full bg-black p-6 text-white hover:bg-black/80"
-              >
-                <Link href="/pelican-vault">Get Identity Vault</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
 
         <Footer />
       </div>
