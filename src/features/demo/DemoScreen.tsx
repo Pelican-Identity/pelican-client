@@ -101,13 +101,6 @@ const DemoScreen = ({
                   </button>
                 </div>
               </div>
-
-              <div className="rounded-xl bg-blue-50 p-4">
-                <p className="text-xs text-blue-900">
-                  <strong>Note:</strong> The Pelican Vault app is required to
-                  complete authentication.
-                </p>
-              </div>
             </div>
 
             {/* Right Column - Results Display */}
